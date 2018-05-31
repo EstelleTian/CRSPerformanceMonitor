@@ -1,0 +1,325 @@
+html,
+body {
+  width: 100% ;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background: #2e5e79;
+  font-family: Calibri, 'Microsoft Yahei', sans-serif;
+}
+html .wrap,
+body .wrap {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+html .wrap .headbar,
+body .wrap .headbar {
+  height: 50px;
+  width: 100%;
+  background-color: #204562;
+}
+html .wrap .headbar h3,
+body .wrap .headbar h3 {
+  color: white;
+  margin-top: 10px;
+}
+html .wrap .headbar .head_right,
+body .wrap .headbar .head_right {
+  overflow: hidden;
+  float: right;
+}
+html .wrap .headbar .head_right .user_info,
+body .wrap .headbar .head_right .user_info {
+  float: right;
+  font-size: 14px;
+  color: #fff;
+  height: 50px;
+  margin-right: 30px;
+  overflow: hidden;
+}
+html .wrap .headbar .head_right .user_info .user_login,
+body .wrap .headbar .head_right .user_info .user_login {
+  height: 100%;
+  overflow: hidden;
+}
+html .wrap .headbar .head_right .user_info .user_login .user_name,
+body .wrap .headbar .head_right .user_info .user_login .user_name {
+  height: 100%;
+  overflow: hidden;
+  padding-left: 0;
+  clear: both;
+}
+html .wrap .headbar .head_right .user_info .user_login .user_name li,
+body .wrap .headbar .head_right .user_info .user_login .user_name li {
+  list-style: none;
+  float: left;
+  line-height: 50px;
+  margin-left: 15px;
+  text-align: center;
+}
+html .wrap .headbar .head_right .user_info .user_login .user_name li .btn-default,
+body .wrap .headbar .head_right .user_info .user_login .user_name li .btn-default {
+  background-color: #e4e4e4;
+  padding: 5px 20px;
+  border-radius: 4px;
+}
+html .wrap .headbar .head_right .user_info .user_login .user_name li .btn-default:hover,
+body .wrap .headbar .head_right .user_info .user_login .user_name li .btn-default:hover {
+  background-color: #cccccc;
+  padding: 5px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+html .wrap .data_time,
+body .wrap .data_time {
+  line-height: 20px;
+  height: 20px;
+  color: #fff;
+  font-size: 14px;
+  overflow: hidden;
+  margin-top: 10px;
+  background-color: #315c7c;
+}
+html .wrap .data_time .data_clock,
+body .wrap .data_time .data_clock {
+  float: right;
+  margin-right: 15px;
+}
+html .wrap .container,
+body .wrap .container {
+  overflow: hidden;
+  flex: 1;
+  width: 100%;
+  margin: 0;
+}
+html .wrap .container .row,
+body .wrap .container .row {
+  height: 100%;
+}
+html .wrap .container .left,
+body .wrap .container .left {
+  height: 100%;
+  padding: 15px 0 0 7px;
+}
+html .wrap .container .left .flow_caculate,
+body .wrap .container .left .flow_caculate {
+  height: 25%;
+}
+html .wrap .container .left .flow_24,
+body .wrap .container .left .flow_24 {
+  height: 25%;
+}
+html .wrap .container .left .monitor,
+body .wrap .container .left .monitor {
+  margin-top: 0.5% ;
+  height: 30%;
+}
+html .wrap .container .left .top10,
+body .wrap .container .left .top10 {
+  margin-top: 0.5%;
+  height: 43%;
+}
+html .wrap .container .airport_init,
+body .wrap .container .airport_init {
+  height: 100%;
+  padding: 15px 0px 0 8px;
+}
+html .wrap .container .airport_init .airport,
+body .wrap .container .airport_init .airport {
+  height: 100%;
+  padding-left: 0;
+}
+html .wrap .container .box,
+body .wrap .container .box {
+  background: #fff;
+  height: 99%;
+  padding: 10px 10px 0px 10px;
+  margin-left: -8px;
+  -moz-border-radius: 5px 5px 5px 5px;
+  /* Firefox */
+  -webkit-border-radius: 5px 5px 5px 5px;
+  /* Safari, Chrome */
+  border-radius: 5px 5px 5px 5px;
+  /* CSS3 */
+}
+html .wrap .container .box h2,
+body .wrap .container .box h2 {
+  font-size: 1.6rem;
+  font-weight: bold;
+  color: #1B548D;
+  background: #E6F0F3;
+  margin: -10px -10px 0 -10px;
+  padding: 10px 12px;
+  border-bottom: 1px solid #B3CBD6;
+  -moz-border-radius: 5px 5px 0px 0px;
+  /* Firefox */
+  -webkit-border-radius: 5px 5px 0px 0px;
+  /* Safari, Chrome */
+  border-radius: 5px 5px 0px 0px;
+  /* CSS3 */
+  overflow: hidden;
+}
+html .wrap .container .box h2 .airport_data_time,
+body .wrap .container .box h2 .airport_data_time {
+  font-weight: normal;
+  font-size: 13px;
+  float: right;
+  line-height: 1.6rem;
+}
+html .wrap .container .box .grid,
+body .wrap .container .box .grid {
+  padding-bottom: 40px;
+}
+@media (max-width: 992px) {
+  html .wrap,
+  body .wrap {
+    width: 100%;
+    height: 100%;
+  }
+  html .wrap .headbar,
+  body .wrap .headbar {
+    height: 70px;
+    width: 100%;
+    background-color: #204562;
+  }
+  html .wrap .headbar h3,
+  body .wrap .headbar h3 {
+    color: white;
+  }
+  html .wrap .headbar .head_right,
+  body .wrap .headbar .head_right {
+    overflow: hidden;
+    float: right;
+  }
+  html .wrap .headbar .head_right .user_info,
+  body .wrap .headbar .head_right .user_info {
+    float: right;
+    font-size: 14px;
+    color: #fff;
+    height: 50px;
+    margin-right: 10px;
+    overflow: hidden;
+  }
+  html .wrap .headbar .head_right .user_info .user_login,
+  body .wrap .headbar .head_right .user_info .user_login {
+    overflow: hidden;
+  }
+  html .wrap .headbar .head_right .user_info .user_login .user_name,
+  body .wrap .headbar .head_right .user_info .user_login .user_name {
+    overflow: hidden;
+    padding-left: 0;
+    font-size: 12px;
+  }
+  html .wrap .headbar .head_right .user_info .user_login .user_name li,
+  body .wrap .headbar .head_right .user_info .user_login .user_name li {
+    list-style: none;
+    margin-left: 15px;
+    text-align: center;
+  }
+  html .wrap .headbar .head_right .user_info .user_login .user_name .logout .btn-default,
+  body .wrap .headbar .head_right .user_info .user_login .user_name .logout .btn-default {
+    background-color: #e4e4e4;
+    padding: 5px 15px;
+    border-radius: 4px;
+  }
+  html .wrap .data_time,
+  body .wrap .data_time {
+    line-height: 20px;
+    height: 20px;
+    color: #fff;
+    font-size: 14px;
+    overflow: hidden;
+    margin-top: 10px;
+    background-color: #315c7c;
+  }
+  html .wrap .data_time .data_clock,
+  body .wrap .data_time .data_clock {
+    float: right;
+    margin-right: 15px;
+  }
+  html .wrap .container,
+  body .wrap .container {
+    overflow: auto;
+    flex: auto;
+    width: 100%;
+    margin: 0;
+  }
+  html .wrap .container .row,
+  body .wrap .container .row {
+    height: 100%;
+  }
+  html .wrap .container .left,
+  body .wrap .container .left {
+    height: 100%;
+    padding: 15px 0 0 15px;
+  }
+  html .wrap .container .left .flow_caculate,
+  body .wrap .container .left .flow_caculate {
+    height: 25%;
+    padding-right: 15px;
+  }
+  html .wrap .container .left .flow_24,
+  body .wrap .container .left .flow_24 {
+    height: 25%;
+  }
+  html .wrap .container .left .monitor,
+  body .wrap .container .left .monitor {
+    margin-top: 0.5% ;
+    height: 30%;
+  }
+  html .wrap .container .left .top10,
+  body .wrap .container .left .top10 {
+    margin-top: 0.5%;
+    height: 43%;
+  }
+  html .wrap .container .airport_init,
+  body .wrap .container .airport_init {
+    height: 100%;
+    padding: 0 15px;
+  }
+  html .wrap .container .airport_init .airport,
+  body .wrap .container .airport_init .airport {
+    height: 100%;
+    width: 100%;
+    padding: 0;
+  }
+  html .wrap .container .airport_init .airport .box,
+  body .wrap .container .airport_init .airport .box {
+    margin-left: 6px;
+  }
+  html .wrap .container .box,
+  body .wrap .container .box {
+    background: #fff;
+    height: 99%;
+    padding: 10px 10px 0px 10px;
+    margin-left: -8px;
+    -moz-border-radius: 5px 5px 5px 5px;
+    /* Firefox */
+    -webkit-border-radius: 5px 5px 5px 5px;
+    /* Safari, Chrome */
+    border-radius: 5px 5px 5px 5px;
+    /* CSS3 */
+  }
+  html .wrap .container .box h2,
+  body .wrap .container .box h2 {
+    font-size: 1.6rem;
+    font-weight: bold;
+    color: #1B548D;
+    background: #E6F0F3;
+    margin: -10px -10px 0 -10px;
+    padding: 10px 12px;
+    border-bottom: 1px solid #B3CBD6;
+    -moz-border-radius: 5px 5px 0px 0px;
+    /* Firefox */
+    -webkit-border-radius: 5px 5px 0px 0px;
+    /* Safari, Chrome */
+    border-radius: 5px 5px 0px 0px;
+    /* CSS3 */
+  }
+  html .wrap .container .box .grid,
+  body .wrap .container .box .grid {
+    padding-bottom: 40px;
+  }
+}

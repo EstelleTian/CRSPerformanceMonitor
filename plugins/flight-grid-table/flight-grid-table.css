@@ -1,0 +1,119 @@
+@CHARSET "UTF-8";
+
+
+/**
+ * 当前选中的单元格
+ */
+.flight-grid-table-current-select-cell {
+	background-image: url(../../img/cell_select.png);
+	box-shadow: 0 0 10px 0px #222; 
+}
+
+/**
+ * 单元格预加DOM内容的容器
+ */
+.flight-grid-table-collaborate-container {
+	text-align: left;
+	height: auto;
+	padding: 5px;
+	padding-bottom : 0;
+	border: solid 2px #3399FF;
+	position: absolute;
+	z-index: 3;
+	background-color: white;
+	box-shadow: 0 0 10px 0px #222;
+	border-radius: 5px;
+	font-size: 16px;
+	width: 220px;
+}
+.flight-grid-table-collaborate-container.pos-width{
+	width: 235px;
+}
+
+.flight-grid-table-collaborate-container-flightid {
+	width: 180px;
+}
+
+/**
+ * textarea 禁止拖动
+ */
+.collaborate-textarea {
+	resize : none;
+}
+
+/**
+ * button - flightid
+ */
+ 
+.form-group-custom {
+	margin-bottom: 5px;
+}
+
+.form-group-custom-last {
+	margin-bottom: 0;
+}
+ 
+.collaborate-content-button {
+	width: 166px;
+}
+
+/**
+ * button - other
+ */
+.collaborate-content-level {
+	margin-right: 2px;
+}
+
+.flight-trajector-popover-div{
+	text-align:center;
+	width:350px;
+}
+
+.flight-trajector-popover-label{
+	display:inline-block;
+	width:85px;
+	height:25px;
+	min-height:25px;
+	border: solid 1px #999;
+	margin-left: -1px;
+	margin-top: -1px;
+	overflow: hidden;
+}
+.flight-trajector-popover-label-header{
+	font-weight:bold;
+}
+/**
+*  表格底部nav, 自定义按钮
+*  目的：保证popover显示不被遮盖
+*/
+.glyphicon-lock + .popover{
+	min-width: 240px;
+	width: 240px;
+}
+.popover .multi-content input.multi-content-input{
+	margin: 0 0.4em;
+	width: 70px;
+}
+.popover .popover-content button.multi-lock-btn{
+	margin-left: 0.5em;
+    margin-top: -0.1em;
+}
+.popover .popover-content .multi-checkbox input[type='checkbox']{
+	margin-top: 0.2em;
+}
+.ui-jqgrid .ui-pg-table td.ui-pg-button{
+	padding: 0;
+    margin-left: 7px;
+    display: inline-block;
+}
+.ui-jqgrid .ui-pg-table td .ui-pg-div .glyphicon-lock{
+	padding: 8px;
+    position: relative;
+    top: 1px;
+    margin: 0;
+}
+
+/*解决表格出现双滚动条*/
+.table-responsive {
+	overflow-x: hidden;
+}

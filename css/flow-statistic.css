@@ -1,0 +1,201 @@
+.flow_caculate .box, .flow_24 .box, .rankings_table_container .box{
+    display: flex;
+    flex-direction: column;
+    flex: 2;
+}
+.flow_caculate .flow_statistic, .flow_24 .statistic_24_hour {
+    display: flex;
+    flex: 1;
+    flex-direction: row;
+    height: 100%;
+}
+.rankings_table_container {
+    padding-right: 5px;
+}
+.flow_24 {
+    padding-left: 10px;
+}
+
+.dhx_wrap {
+    padding-left: 20px;
+    padding-right: 20px;
+    position: relative;
+    height: 100%;
+    width: 100%;
+    top:0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    overflow: auto;
+}
+.dhx_wrap .header {
+    /*height: 70px;*/
+    line-height: 70px;
+    margin-bottom: 10px;
+    text-align: center;
+    border: solid 1px #ddd;
+    border-radius: 5px;
+}
+.total_record {
+    margin-left: 4px;
+    margin-right: 4px;
+}
+.dhx_wrap .tb_canvas, .tb_rankings_canvas {
+    border: 1px solid #ddd;
+    border-radius: 3px;
+}
+.tb_rankings_canvas {
+    margin-top: 5px;
+}
+.dhx_wrap .win_head {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.statistic_generateTime {
+    font-weight: normal;
+    font-size: 13px;
+}
+/*.tb_canvas .ui-jqgrid .ui-jqgrid-htable thead th{
+    background: #e6f0f3;
+}
+.tb_canvas .ui-jqgrid .ui-jqgrid-htable thead th:hover{
+    background: #e6f0f3;
+}*/
+
+.flow_detail .bar_title{
+    font-size: 18px;
+    border-bottom: 1px solid #919191;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.flow_detail .sub_title {
+    font-size: 16px;
+    font-weight: 600;
+}
+.flow_detail label {
+    font-weight: normal;
+}
+.flow_detail .row > div > label {
+    min-width: 100px;
+    float: left;
+}
+
+.flow_detail .row .item_value {
+    display: block;
+    float: none;
+    margin-left: 100px;
+}
+.flow_detail .row .source label, .flow_detail .row .type label{
+    margin-right: 8px;
+}
+.flow_detail .row .source label.icon, .flow_detail .row .type label.icon {
+    content: "";
+    border: solid 1px #333;
+    width: 14px;
+    height: 14px;
+    background: transparent;
+    margin: 0;
+    padding: 0;
+    min-width: 0;
+}
+.flow_detail .row .source label.select, .flow_detail .row .type label.select{
+    background: #333;
+}
+
+.flow_detail .status {
+    font-weight: 600;
+}
+
+.status_running{
+    color: green;
+    font-weight:600;
+}
+
+.status_future{
+    color: blue;
+    font-weight:600;
+}
+
+.status_stop{
+    color: red;
+    font-weight:600;
+}
+.status_terminated{
+    color:red;
+    font-weight:600;
+}
+.status_finished{
+    color:orange;
+    font-weight:600;
+}
+.flow_detail > .row {
+    margin-bottom: 8px;
+}
+
+.flow_detail .time_segment_item {
+    display: inline-block;
+    min-width: 180px;
+}
+.flow_detail .record_table {
+    width: 100%;
+    border-top: 1px solid #e5e5e5;
+    border-left: 1px solid #e5e5e5;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+.flow_detail .record_table thead {
+    border-bottom: 1px solid #e5e5e5;
+    background: #eee;
+}
+
+.flow_detail .record_table thead th, .flow_detail .record_table tbody td{
+    border-right: 1px solid #e5e5e5;
+    padding: 4px;
+    text-align: center;
+}
+.flow_detail .record_table tbody tr {
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.flow_detail .record_table .record_type, .flow_detail .record_table .record_user {
+    width: 10%;
+}
+.flow_detail .record_table .record_after, .flow_detail .record_table .record_before {
+    width: 20%;
+}
+.flow_detail .valve-ico {
+    position: relative;
+    user-focus: none;
+    user-select: none;
+    cursor: pointer;
+}
+.flow_detail .hides:before{
+    content: "";
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    border-left: solid 2px #555;
+    border-bottom: solid 2px #555;
+    transform: rotate(-45deg);
+    top: -4px;
+    right: 5px;
+}
+.flow_detail .show:before {
+    content: "";
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    border-left: solid 2px #555;
+    border-bottom: solid 2px #555;
+    transform: rotate(135deg);
+    top: 5px;
+    right: 5px;
+}
+
+td.link_cell {
+    cursor: pointer;
+    color: #337ab7;
+}
+.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {padding: 2px;}

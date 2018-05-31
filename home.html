@@ -1,0 +1,309 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>CRS运行监控平台</title>
+    <link rel="shortcut icon" href="favicon.ico"/>
+    <link href="plugins/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="plugins/bootstrap/css/bootstrap-dialog-factory.css" rel="stylesheet">
+    <link rel="stylesheet" href="plugins/dhx/css/fonts/font_roboto/roboto.css">
+    <link rel="stylesheet" href="plugins/dhx/css/dhtmlx.css">
+    <link rel="stylesheet" href="plugins/ladda/css/ladda.css">
+    <link rel="stylesheet" href="css/flight-coordination-detail-and-operation.css">
+    <link rel="stylesheet" href="plugins/dhx/skins/terrace/dhtmlx.css">
+    <link rel="stylesheet" href="plugins/jqgrid/css/ui.jqgrid-bootstrap.css">
+    <link rel="stylesheet" href="plugins/jqgrid/css/ui.jqgrid-bootstrap-custom.css">
+    <link rel="stylesheet" href="plugins/flight-grid-table/flight-grid-table.css">
+    <link rel="stylesheet" href="plugins/spin/css/spin-custom.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/flow-statistic.css">
+    <link rel="stylesheet" href="css/flight-airport.css">
+</head>
+<body id="winVP">
+<div class="wrap">
+    <div class="headbar clearfix">
+        <h3 class="col-md-6 col-sm-6 col-xs-6">CRS运行监控态势</h3>
+        <div class="col-md-4 col-sm-5 col-xs-6 head_right">
+            <div class="user_info">
+                <div class="user_login">
+                    <ul class="user_name">
+                        <li><span class="glyphicon glyphicon-user"></span> 用户：<span class="name"></span></li>
+                        <li class="logout">
+                            <a class="atfm-btn btn-default user_logout">登出</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--<div class="data_time">-->
+        <!--<p class="data_clock">-->
+            <!--数据生成时间：2017-12-12 12：03-->
+        <!--</p>-->
+    <!--</div>-->
+    <div class="container">
+        <div class="row">
+            <div class="col-md-7 left statistic_section">
+                <!--流控统计-->
+                <div class="col-md-12 flow_caculate">
+                    <div class="box">
+                        <h2>流控统计
+                            <span class="pull-right statistic_generateTime"></span>
+                        </h2>
+                        <div class="flow_statistic">
+                            <div class="col-md-4 flow_direction">
+
+                            </div>
+                            <div class="col-md-4 flow_status">
+
+                            </div>
+                            <div class="col-md-4 flow_reason">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!--航班监控-->
+                <div class="col-md-12 monitor">
+                    <div class=" box">
+                        <h2>航班监控
+                            <div class="pull-right">
+                                <select class="direction_filter">
+                                    <option value="all_direction">全部方向</option>
+                                </select>
+                            </div>
+                        </h2>
+                        <div class="monitor_wrap">
+                            <div class="col-md-6">
+                                <div class="monitor_item">
+                                    <ul class="monitor_items">
+                                        <li class="item">
+                                            <div class="num">
+                                                <p class="num_item_single">
+                                                    <a class="now_control"></a>
+                                                    <!--<span class="mark_left">当前</span>-->
+                                                </p>
+                                                <!--<span class="line"></span>-->
+                                                <!--<p class="num_item">-->
+                                                    <!--<a class="all_control"></a>-->
+                                                    <!--<span class="mark_right">总数</span>-->
+                                                <!--</p>-->
+                                            </div>
+                                            <p class="num_name fcs">当前受控总量</p>
+                                        </li>
+                                        <li class="item">
+                                            <div class="num">
+                                                <p class="num_item">
+                                                    <a  class="has_single"></a>
+                                                    <span class="mark_left">有信号</span>
+                                                </p>
+                                                <span class="line"></span>
+                                                <p class="num_item">
+                                                    <a  class="no_single"></a>
+                                                    <span class="mark_right">无信号</span>
+                                                </p>
+                                            </div>
+                                            <p class="num_name fly_over">飞越航班</p>
+                                        </li>
+                                        <li class="item">
+                                            <div class="num">
+                                                <p class="num_item_single area_out"></p>
+                                            </div>
+                                            <p class="num_name mb0">区外起飞航班</p>
+                                            <!--<p class="sub_name">（分配时隙）</p>-->
+                                        </li>
+                                        <li class="item">
+                                            <div class="num">
+                                                <p class="num_item_single area_in"></p>
+                                            </div>
+                                            <p class="num_name ">区内起飞航班</p>
+                                        </li>
+                                        <li class="item bb0">
+                                            <div class="num">
+                                                <p class="num_item_single flights_exempt"></p>
+                                            </div>
+                                            <p class="num_name ">豁免航班</p>
+                                        </li>
+                                        <li class="item bb0">
+                                            <div class="num">
+                                                <p class="num_item_single flights_pool_in"></p>
+                                            </div>
+                                            <p class="num_name ">入池航班</p>
+                                        </li>
+                                        <li class="item bb0">
+                                            <div class="num">
+                                                <p class="num_item_single manualIntervention"></p>
+                                            </div>
+                                            <p class="num_name ">人工干预航班</p>
+                                        </li>
+                                        <li class="item bb0">
+                                            <div class="num">
+                                                <p class="num_item_single flights_close_wait"></p>
+                                            </div>
+                                            <p class="num_name ">关门等待航班</p>
+                                        </li>
+                                        <div class="circle"></div>
+                                        <div class="circle1"></div>
+                                        <div class="circle2"></div>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="monitor_item">
+                                    <ul class="monitor_items">
+                                        <li class="item">
+                                            <div class="num">
+                                                <p class="num_item_single flights_total_flowcontrol"></p>
+                                            </div>
+                                            <p class="num_name ">受控总量</p>
+                                        </li>
+                                        <li class="item">
+                                            <div class="num">
+                                                <p class="num_item">
+                                                    <a class="already_release_in"></a>
+                                                    <!--<span class="mark_left">区内</span>-->
+                                                </p>
+                                                <span class="line"></span>
+                                                <p class="num_item">
+                                                    <a class="already_release_out"></a>
+                                                    <span class="mark_right">飞越</span>
+                                                </p>
+                                            </div>
+                                            <div class="num_name fcs">已起飞航班</div>
+                                        </li>
+                                        <li class="item">
+                                            <div class="num">
+                                                <p class="num_item_single already_release_precent"></p>
+                                            </div>
+                                            <p class="num_name ">已放行执行率</p>
+                                        </li>
+                                        <li class="item">
+                                            <div class="num">
+                                                <p class="num_item_single late_unfly"></p>
+                                            </div>
+                                            <p class="num_name ">延误未起飞</p>
+                                        </li>
+                                        <li class="item bb0">
+                                            <div class="num">
+
+                                                <p class="num_item">
+                                                    <a class="wait_fly_in"></a>
+                                                    <!--<span class="mark_left">区内</span>-->
+                                                </p>
+                                                <span class="line"></span>
+                                                <p class="num_item">
+                                                    <a class="wait_fly_out"></a>
+                                                    <span class="mark_right">飞越</span>
+                                                </p>
+                                            </div>
+                                            <p class="num_name ">未起飞航班</p>
+                                        </li>
+                                        <li class="item bb0">
+                                            <div class="num">
+                                                <p class="num_item_single last_one"></p>
+                                            </div>
+                                            <p class="num_name ">上1小时实际放行</p>
+                                        </li>
+                                        <li class="item bb0">
+                                            <div class="num">
+                                                <p class="num_item_single now_one"></p>
+                                            </div>
+                                            <p class="num_name ">当前1小时预计放行</p>
+                                        </li>
+                                        <li class="item bb0">
+                                            <div class="num">
+                                                <p class="num_item_single next_one"></p>
+                                            </div>
+                                            <p class="num_name ">下1小时预计放行</p>
+                                        </li>
+                                        <div class="circle"></div>
+                                        <div class="circle1"></div>
+                                        <div class="circle2"></div>
+                                    </ul>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--流控排名表-->
+                <div class="col-md-7 top10 rankings_table_container">
+                    <div class=" box">
+                        <h2>
+                            <span class="rankings_title">流控排名表</span>
+                            <div class="pull-right">
+                                <select class="rankings_filter">
+                                    <option value="rankings" class="rankings" selected>流控排名表</option>
+                                    <option value="all" class="all">全部流控表</option>
+                                </select>
+                            </div>
+                        </h2>
+                        <div id="tb_rankings_canvas" class="tb_rankings_canvas">
+                            <table class="rankings_table" id="rankings_table"></table>
+                            <div id="rankings_table_pager"></div>
+                        </div>
+                    </div>
+                </div>
+                <!--流控24小时-->
+                <div class="col-md-5 flow_24 top10">
+                    <div class=" box">
+                        <h2>流控时间统计</h2>
+                        <div class="statistic_24_hour">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-5 right airport_init">
+                <!--机场-->
+                <div class="col-md-12 airport">
+                    <div class="box">
+                        <h2>机场 <span class="airport_data_time"></span></h2>
+                        <div class="airport_wrap">
+                            <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="plugins/jquery/js/jquery.min.js"></script>
+<script src="plugins/jquery/js/jquery-ui.min.1.9.2.js"></script>
+<script src="plugins/bootstrap/js/bootstrap.min.js"></script>
+<!--<script src="plugins/dialog-factory/bootstrap-dialog-factory.js"></script>-->
+<script src="plugins/jquery/js/jquery-custom-util.js"></script>
+<script src="plugins/echarts/echarts.min.js"></script>
+<script src="plugins/jqgrid/js/jquery.jqGrid.5.2.0.js"></script>
+<script src="plugins/jqgrid/js/jquery.jqGrid.util.js"></script>
+<script src="plugins/jqgrid/i18n/grid.locale-cn.js"></script>
+<script src="plugins/ladda/js/spin.min.js" type="text/javascript" ></script>
+<script src="plugins/ladda/js/ladda.js" type="text/javascript" ></script>
+<script src="plugins/flight-grid-table/fmetoday.js"></script>
+<script src="plugins/flight-grid-table/flight-coordination.js"></script>
+<script src="plugins/flight-grid-table/flight-coordination-record.js"></script>
+<script src="plugins/flight-grid-table/flight-grid-table-data-util.js"></script>
+<script src="plugins/flight-grid-table/flight-grid-table-collaborate-dom.js"></script>
+<script src="plugins/flight-grid-table/flight-grid-table-config.js"></script>
+<script src="plugins/flight-grid-table/flight-grid-table.js"></script>
+<!--<script src="plugins/spin/js/spin.min.js"></script>-->
+<script src="plugins/spin/js/spin-utils-config.js"></script>
+<!--jszip 表格导出excel 必用-->
+<script src="plugins/jszip/jszip.min.js" type="text/javascript"></script>
+<script src="js/flowcontrol-utils.js"></script>
+<script src="js/flight-coordination-record-data-util.js"></script>
+
+<script src="js/iphost.js"></script>
+<script src="plugins/dhx/js/dhtmlxwindows.js"></script>
+<script src="js/dhx-iframe-dialog.js"></script>
+<script src="js/flight-coordination-detail-and-operation.js"></script>
+<script src="js/common.js"></script>
+<script src="js/chart-coustom.js"></script>
+<!--流控数据统计-->
+<script src="js/flow-statistic.js"></script>
+<script src="js/flow-detail.js"></script>
+<!--航班监控-->
+<script src="js/flight-chart.js"></script>
+<script src="js/flight-airport.js"></script>
+</body>
+</html>

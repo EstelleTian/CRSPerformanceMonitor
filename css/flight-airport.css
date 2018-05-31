@@ -1,0 +1,448 @@
+html .container,
+body .container {
+  overflow: hidden;
+  flex: 1;
+  width: 100%;
+  margin: 0;
+}
+html .container a,
+body .container a {
+  color: #337ab7;
+  text-decoration: none;
+  -webkit-user-select: none;
+  /*webkit浏览器*/
+}
+html .container a:hover,
+body .container a:hover {
+  cursor: pointer;
+  color: #337ab7;
+  text-decoration: none;
+  -webkit-user-select: none;
+  /*webkit浏览器*/
+}
+html .container .row,
+body .container .row {
+  height: 100%;
+}
+html .container .left,
+body .container .left {
+  height: 100%;
+  padding: 15px 0 0 15px;
+}
+html .container .left .monitor,
+body .container .left .monitor {
+  margin-top: 0.5% ;
+  height: 30%;
+}
+html .container .left .monitor .box,
+body .container .left .monitor .box {
+  display: flex;
+  flex-direction: column;
+}
+html .container .left .monitor .box .monitor_wrap,
+body .container .left .monitor .box .monitor_wrap {
+  width: 100%;
+  flex: 1;
+  position: relative;
+  overflow: auto;
+}
+html .container .left .monitor .box .monitor_wrap .col-md-6,
+body .container .left .monitor .box .monitor_wrap .col-md-6 {
+  height: 100%;
+  padding: 0 5px;
+}
+html .container .left .monitor .box .monitor_wrap .col-md-6 .monitor_item,
+body .container .left .monitor .box .monitor_wrap .col-md-6 .monitor_item {
+  border: 1px solid #cccccc;
+  border-radius: 5px ;
+  height: 93%;
+  margin-top: 2%;
+  overflow: hidden;
+}
+html .container .left .monitor .box .monitor_wrap .col-md-6 .monitor_item .monitor_items,
+body .container .left .monitor .box .monitor_wrap .col-md-6 .monitor_item .monitor_items {
+  width: 98%;
+  height: 96%;
+  display: grid;
+  position: relative;
+  margin: 2% 1%;
+  grid-template-columns: 25% 25% 25% 25%;
+  grid-template-rows: 48% 48%;
+  list-style: none;
+  padding-left: 0;
+}
+html .container .left .monitor .box .monitor_wrap .col-md-6 .monitor_item .monitor_items li,
+body .container .left .monitor .box .monitor_wrap .col-md-6 .monitor_item .monitor_items li {
+  border-right: 1px solid #cccccc;
+  border-bottom: 1px solid #cccccc;
+}
+html .container .left .monitor .box .monitor_wrap .col-md-6 .monitor_item .monitor_items li .num,
+body .container .left .monitor .box .monitor_wrap .col-md-6 .monitor_item .monitor_items li .num {
+  position: relative;
+  overflow: hidden;
+  min-height: 40px;
+}
+html .container .left .monitor .box .monitor_wrap .col-md-6 .monitor_item .monitor_items li .num .num_item,
+body .container .left .monitor .box .monitor_wrap .col-md-6 .monitor_item .monitor_items li .num .num_item {
+  float: left;
+  width: 49%;
+  text-align: center;
+  margin: 15px 0 0;
+  font-weight: bold;
+  font-size: 30px;
+  position: relative;
+}
+html .container .left .monitor .box .monitor_wrap .col-md-6 .monitor_item .monitor_items li .num .num_item .mark_left,
+body .container .left .monitor .box .monitor_wrap .col-md-6 .monitor_item .monitor_items li .num .num_item .mark_left,
+html .container .left .monitor .box .monitor_wrap .col-md-6 .monitor_item .monitor_items li .num .num_item .mark_right,
+body .container .left .monitor .box .monitor_wrap .col-md-6 .monitor_item .monitor_items li .num .num_item .mark_right {
+  position: absolute;
+  font-size: 10px;
+  width: 40px;
+  top: -10px;
+  right: 10px;
+  font-weight: normal;
+  -webkit-text-size-adjust: none;
+  -webkit-transform: scale(0.8);
+  display: inline-block;
+}
+html .container .left .monitor .box .monitor_wrap .col-md-6 .monitor_item .monitor_items li .num .num_item_single,
+body .container .left .monitor .box .monitor_wrap .col-md-6 .monitor_item .monitor_items li .num .num_item_single {
+  text-align: center;
+  margin: 9px 0 0;
+  font-weight: bold;
+  font-size: 34px;
+  color: #337ab7;
+  -webkit-user-select: none;
+  /*webkit浏览器*/
+}
+html .container .left .monitor .box .monitor_wrap .col-md-6 .monitor_item .monitor_items li .num .num_item_single:hover,
+body .container .left .monitor .box .monitor_wrap .col-md-6 .monitor_item .monitor_items li .num .num_item_single:hover {
+  cursor: pointer;
+}
+html .container .left .monitor .box .monitor_wrap .col-md-6 .monitor_item .monitor_items li .num .already_release_precent:hover,
+body .container .left .monitor .box .monitor_wrap .col-md-6 .monitor_item .monitor_items li .num .already_release_precent:hover {
+  cursor: default;
+}
+html .container .left .monitor .box .monitor_wrap .col-md-6 .monitor_item .monitor_items li .num .line,
+body .container .left .monitor .box .monitor_wrap .col-md-6 .monitor_item .monitor_items li .num .line {
+  float: left;
+  border-left: 1px solid #d9dee4;
+  height: 20px;
+  margin: 20px 0 0;
+}
+html .container .left .monitor .box .monitor_wrap .col-md-6 .monitor_item .monitor_items li .num_name,
+body .container .left .monitor .box .monitor_wrap .col-md-6 .monitor_item .monitor_items li .num_name {
+  text-align: center;
+  height: 20px;
+  font-size: 12px;
+  padding: 0;
+}
+html .container .left .monitor .box .monitor_wrap .col-md-6 .monitor_item .monitor_items li .mb0,
+body .container .left .monitor .box .monitor_wrap .col-md-6 .monitor_item .monitor_items li .mb0 {
+  margin-bottom: 0;
+}
+html .container .left .monitor .box .monitor_wrap .col-md-6 .monitor_item .monitor_items li .sub_name,
+body .container .left .monitor .box .monitor_wrap .col-md-6 .monitor_item .monitor_items li .sub_name {
+  text-align: center;
+  font-size: 10px;
+}
+html .container .left .monitor .box .monitor_wrap .col-md-6 .monitor_item .monitor_items li:nth-of-type(1),
+body .container .left .monitor .box .monitor_wrap .col-md-6 .monitor_item .monitor_items li:nth-of-type(1) {
+  margin-left: 2%;
+}
+html .container .left .monitor .box .monitor_wrap .col-md-6 .monitor_item .monitor_items li:nth-of-type(4n),
+body .container .left .monitor .box .monitor_wrap .col-md-6 .monitor_item .monitor_items li:nth-of-type(4n) {
+  border-right: 0;
+}
+html .container .left .monitor .box .monitor_wrap .col-md-6 .monitor_item .monitor_items .bb0,
+body .container .left .monitor .box .monitor_wrap .col-md-6 .monitor_item .monitor_items .bb0 {
+  border-bottom: 0;
+}
+html .container .left .monitor .box .monitor_wrap .col-md-6 .monitor_item .monitor_items .circle,
+body .container .left .monitor .box .monitor_wrap .col-md-6 .monitor_item .monitor_items .circle {
+  position: absolute;
+  background-color: #fff;
+  width: 5%;
+  height: 14%;
+  border-radius: 50%;
+  left: 22%;
+  top: 40%;
+}
+html .container .left .monitor .box .monitor_wrap .col-md-6 .monitor_item .monitor_items .circle1,
+body .container .left .monitor .box .monitor_wrap .col-md-6 .monitor_item .monitor_items .circle1 {
+  position: absolute;
+  background-color: #fff;
+  width: 5%;
+  height: 14%;
+  border-radius: 50%;
+  left: 47%;
+  top: 40%;
+}
+html .container .left .monitor .box .monitor_wrap .col-md-6 .monitor_item .monitor_items .circle2,
+body .container .left .monitor .box .monitor_wrap .col-md-6 .monitor_item .monitor_items .circle2 {
+  position: absolute;
+  background-color: #fff;
+  width: 5%;
+  height: 14%;
+  border-radius: 50%;
+  left: 72%;
+  top: 40%;
+}
+html .container .airport_init,
+body .container .airport_init {
+  height: 100%;
+  padding: 15px 0px 0 10px;
+}
+html .container .airport_init .airport,
+body .container .airport_init .airport {
+  height: 100%;
+  padding-left: 0;
+}
+html .container .airport_init .airport .box,
+body .container .airport_init .airport .box {
+  display: flex;
+  flex-direction: column;
+}
+html .container .airport_init .airport .airport_wrap,
+body .container .airport_init .airport .airport_wrap {
+  flex: 1;
+  overflow: auto;
+}
+html .container .airport_init .airport .airport_wrap .lds-ring,
+body .container .airport_init .airport .airport_wrap .lds-ring {
+  display: inline-block;
+  position: relative;
+  width: 64px;
+  height: 64px;
+  margin: 47%;
+}
+html .container .airport_init .airport .airport_wrap .lds-ring div,
+body .container .airport_init .airport .airport_wrap .lds-ring div {
+  box-sizing: border-box;
+  display: block;
+  position: absolute;
+  width: 51px;
+  height: 51px;
+  margin: 6px;
+  border: 6px solid #61a0a8;
+  border-radius: 50%;
+  animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+  border-color: #61a0a8 transparent transparent transparent;
+}
+html .container .airport_init .airport .airport_wrap .lds-ring div:nth-child(1),
+body .container .airport_init .airport .airport_wrap .lds-ring div:nth-child(1) {
+  animation-delay: -0.45s;
+}
+html .container .airport_init .airport .airport_wrap .lds-ring div:nth-child(2),
+body .container .airport_init .airport .airport_wrap .lds-ring div:nth-child(2) {
+  animation-delay: -0.3s;
+}
+html .container .airport_init .airport .airport_wrap .lds-ring div:nth-child(3),
+body .container .airport_init .airport .airport_wrap .lds-ring div:nth-child(3) {
+  animation-delay: -0.15s;
+}
+@keyframes lds-ring {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+html .container .airport_init .airport .airport_wrap .airport_content,
+body .container .airport_init .airport .airport_wrap .airport_content {
+  background-color: #F7F7F7;
+  border: 1px solid #cccccc;
+  padding: 1px 15px;
+  margin: 8px 0;
+  border-radius: 5px;
+}
+html .container .airport_init .airport .airport_wrap .airport_content .airport_name,
+body .container .airport_init .airport .airport_wrap .airport_content .airport_name {
+  padding: 5px 0;
+}
+html .container .airport_init .airport .airport_wrap .airport_content .airport_head,
+body .container .airport_init .airport .airport_wrap .airport_content .airport_head {
+  height: 27px;
+  overflow: hidden;
+  font-size: 14px;
+  margin-bottom: 5px;
+}
+html .container .airport_init .airport .airport_wrap .airport_content .airport_head .airport_name,
+body .container .airport_init .airport .airport_wrap .airport_content .airport_head .airport_name {
+  float: left;
+  height: 27px;
+  font-size: 20px;
+  line-height: 27px;
+  font-weight: 800;
+  padding: 0 20px;
+  border-bottom: 1px solid #bbbbbb;
+}
+html .container .airport_init .airport .airport_wrap .airport_content .airport_head .condition,
+body .container .airport_init .airport .airport_wrap .airport_content .airport_head .condition {
+  float: left;
+  height: 27px;
+  line-height: 27px;
+}
+html .container .airport_init .airport .airport_wrap .airport_content .airport_list,
+body .container .airport_init .airport .airport_wrap .airport_content .airport_list {
+  width: 100%;
+  height: 100%;
+  border-radius: 5px;
+  padding: 0;
+  list-style: none;
+}
+html .container .airport_init .airport .airport_wrap .airport_content .airport_list .list_item,
+body .container .airport_init .airport .airport_wrap .airport_content .airport_list .list_item {
+  width: 96%;
+  margin: 0 2%;
+  border-bottom: 1px solid #dddddd;
+}
+html .container .airport_init .airport .airport_wrap .airport_content .airport_list .list_item .runwayDcb,
+body .container .airport_init .airport .airport_wrap .airport_content .airport_list .list_item .runwayDcb {
+  cursor: pointer;
+}
+html .container .airport_init .airport .airport_wrap .airport_content .airport_list .list_item p,
+body .container .airport_init .airport .airport_wrap .airport_content .airport_list .list_item p {
+  margin: 3px 0;
+}
+html .container .airport_init .airport .airport_wrap .airport_content .airport_list .list_item .list_item_name,
+body .container .airport_init .airport .airport_wrap .airport_content .airport_list .list_item .list_item_name {
+  float: left;
+  width: 70%;
+}
+html .container .airport_init .airport .airport_wrap .airport_content .airport_list .list_item .value,
+body .container .airport_init .airport .airport_wrap .airport_content .airport_list .list_item .value {
+  float: left;
+  width: 30%;
+  text-align: center;
+  -webkit-user-select: none;
+  /*webkit浏览器*/
+}
+html .container .airport_init .airport .airport_wrap .airport_content .airport_list .list_item .floor_delay,
+body .container .airport_init .airport .airport_wrap .airport_content .airport_list .list_item .floor_delay {
+  color: #337ab7;
+  text-decoration: none;
+}
+html .container .airport_init .airport .airport_wrap .airport_content .airport_list .list_item .floor_delay:hover,
+body .container .airport_init .airport .airport_wrap .airport_content .airport_list .list_item .floor_delay:hover {
+  cursor: pointer;
+}
+html .container .airport_init .airport .airport_wrap .airport_content .airport_list:last-child,
+body .container .airport_init .airport .airport_wrap .airport_content .airport_list:last-child {
+  padding-bottom: 7px;
+}
+html .container .airport_init .airport .airport_wrap .airport_content .charts,
+body .container .airport_init .airport .airport_wrap .airport_content .charts {
+  padding-left: 0;
+}
+html .container .airport_init .airport .airport_wrap .airport_content .charts .airport_chart,
+body .container .airport_init .airport .airport_wrap .airport_content .charts .airport_chart {
+  min-height: 150px;
+  width: 100%;
+}
+html .container .airport_init .progress_mask,
+body .container .airport_init .progress_mask {
+  top: 15px;
+}
+html .flight_grid_wrap,
+body .flight_grid_wrap {
+  padding: 0 20px;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+html .flight_grid_wrap .now_time,
+body .flight_grid_wrap .now_time {
+  height: 70px;
+  line-height: 70px;
+  margin-bottom: 10px;
+  text-align: center;
+  border: solid 1px #ddd;
+  border-radius: 5px;
+}
+html .flight_grid_wrap .now_time .win_head,
+body .flight_grid_wrap .now_time .win_head {
+  font-size: 24px;
+  font-weight: bold;
+}
+html .flight_grid_wrap .now_time .generate_time,
+body .flight_grid_wrap .now_time .generate_time {
+  margin-left: 15px;
+}
+html .flight_grid_wrap .grid,
+body .flight_grid_wrap .grid {
+  flex: 1;
+  border: solid 1px #ddd;
+  border-radius: 5px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  position: relative;
+}
+html .flight_grid_wrap .table > tbody > tr > td,
+body .flight_grid_wrap .table > tbody > tr > td,
+html .flight_grid_wrap .table > tbody > tr > th,
+body .flight_grid_wrap .table > tbody > tr > th,
+html .flight_grid_wrap .table > tfoot > tr > td,
+body .flight_grid_wrap .table > tfoot > tr > td,
+html .flight_grid_wrap .table > tfoot > tr > th,
+body .flight_grid_wrap .table > tfoot > tr > th,
+html .flight_grid_wrap .table > thead > tr > td,
+body .flight_grid_wrap .table > thead > tr > td,
+html .flight_grid_wrap .table > thead > tr > th,
+body .flight_grid_wrap .table > thead > tr > th {
+  padding: 2px;
+}
+html .popover,
+body .popover {
+  padding-bottom: 10px;
+  min-width: 400px !important;
+}
+html .popover .table,
+body .popover .table {
+  margin-bottom: 5px;
+}
+html .popover .table > tbody > tr > td,
+body .popover .table > tbody > tr > td,
+html .popover .table > tbody > tr > th,
+body .popover .table > tbody > tr > th,
+html .popover .table > tfoot > tr > td,
+body .popover .table > tfoot > tr > td,
+html .popover .table > tfoot > tr > th,
+body .popover .table > tfoot > tr > th,
+html .popover .table > thead > tr > td,
+body .popover .table > thead > tr > td,
+html .popover .table > thead > tr > th,
+body .popover .table > thead > tr > th {
+  padding: 2px;
+  text-align: center;
+}
+html .dcb,
+body .dcb {
+  color: #2e5e79;
+}
+html .dcb:hover,
+body .dcb:hover {
+  cursor: pointer;
+}
+html .detail_DCB .ui-jqgrid-bdiv,
+body .detail_DCB .ui-jqgrid-bdiv,
+html .dcb_detail .ui-jqgrid-bdiv,
+body .dcb_detail .ui-jqgrid-bdiv {
+  overflow-x: hidden;
+}
+html .demand,
+body .demand {
+  color: #337ab7;
+  text-decoration: none;
+}
+html .demand:hover,
+body .demand:hover {
+  cursor: pointer;
+}
+html .dhxwin_button,
+body .dhxwin_button {
+  cursor: pointer;
+}

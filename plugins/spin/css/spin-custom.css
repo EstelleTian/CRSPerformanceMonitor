@@ -1,0 +1,55 @@
+/** ���ؿ�����ʽ------start */
+.progress_container{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 999;
+    min-width: 57px;
+    height: 80px;
+    background-color: #eee;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    -webkit-border-radius: 4px;
+    box-shadow: 5px 5px 5px #ccc;
+    -webkit-box-shadow: 5px 5px 5px #ccc;
+}
+.progress_container .progress_loading{
+    position: relative;
+    top: 50%;
+    left: 50px;
+}
+.progress_container .progress_message{
+    font-size: 18px;
+    color: #666;
+    font-weight: 600;
+    display: inline-block;
+    line-height: 80px;
+    text-align: center;
+    vertical-align: middle;
+    margin-left: 80px;
+    padding-right: 30px;
+}
+
+.progress_mask{
+    background-color: rgba(0,0,0,.2);
+    margin: 0;
+    display: none;
+    position: absolute;
+    left: 0;
+    /*right: 0;*/
+    right: 15px;
+    top: 0;
+    bottom: 0;
+    z-index: 998;
+}
+.progress_mask.show_spin{
+    display:block;
+}
+.color-green{
+    color: #33be40;
+}
+.color-red{
+    color: #FF0000;
+}
+
+/** ���ؿ�����ʽ------end */

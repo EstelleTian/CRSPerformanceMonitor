@@ -1,0 +1,214 @@
+@CHARSET "UTF-8";
+.flight_detail_container table {
+	display: table;
+	border-spacing: 2px;
+	border-collapse: separate;
+}
+.flight_detail_container{
+	height: 100%;
+	overflow-y: scroll;
+}
+.flight_detail_container label{
+	font-weight: normal;
+
+}
+.flight_detail_title {
+	height: 30px;
+	line-height: 30px;
+	font-size: 23px;
+	font-weight: bold;
+	text-align: center;
+	margin: 5px 0px;
+}
+
+.flight_detail_info_basic {
+	width: 49%;
+	margin-right: 2px;
+	float: left;
+	font-size: 14px;
+}
+
+.flight_detail_info_cdm {
+	width: 50%;
+	float: left;
+	margin-left: 2px;
+	font-size:14px;
+}
+
+.flight_detail_item {
+	border: solid 1px #CCC;
+	margin-bottom: 5px;
+}
+
+.flight_detail_item_title {
+	height: 24px;
+	line-height: 24px;
+	text-align: center;
+	font-weight: bold;
+	font-size: 14px;
+	cursor: pointer;
+}
+
+.flight_detail_table {
+	width: 100%;
+	table-layout: fixed;
+	word-wrap: break-word;
+	word-break: normal;
+}
+
+.flight_detail_table tr {
+	height: 25px;
+}
+
+.flight_detail_table tr th {
+	background-color: rgb(225, 236, 242);
+	text-align: left;
+	padding-left: 5px;
+}
+
+.flight_detail_table tr td {
+	background-color: rgb(240, 240, 240);
+	text-align: center;
+}
+
+.flight_detail_table tr td label {
+	display: inline-block;
+	width: 100%;
+	min-height: 16px;
+	line-height: 16px;
+}
+
+.flight_detail_table_empty {
+	background-color: transparent !important;
+}
+
+.flight_detail_table_key {
+	text-align: center !important;
+}
+
+
+.flight_detail_table_key_type {
+	text-align: center !important;
+	width: 100px;
+}
+
+.flight_detail_table_key_value {
+	text-align: center !important;
+	width: 100px;
+}
+
+.flight_detail_table_key_source {
+	text-align: center !important;
+	width: 45px;
+}
+
+.flight_detail_table_key_reason {
+	text-align: center !important;
+	width: 100px;
+}
+
+.flight_detail_table_key_status {
+	text-align: center !important;
+	width: 120px;
+}
+
+
+.flight_detail_dialogs {
+	display: none;
+	overflow: auto;
+	word-wrap: break-word;
+	word-break: normal;
+}
+
+.flight_detail_dialogs label {
+	float: left;
+	clear: both;
+	margin: 0 10px 5px 5px;
+}
+
+.flight_detail_dialogs textarea {
+	float: left;
+	clear: both;
+	margin: 0 10px 5px 10px;
+	padding-left: 3px;
+	border: 1px solid rgba(166, 193, 255, 0.96);
+	border-radius: 2px;
+	width: 170px;
+}
+
+.flight_detail_dialogs label input[type='text'] {
+	margin: 0 0 0 5px;
+	padding-left: 3px;
+	border: 1px solid rgba(166, 193, 255, 0.96);
+	border-radius: 2px;
+	width: 171px;
+	height: 21px;
+}
+
+.flight_detail_dialogs label select {
+	margin: 0 0 0 5px;
+	border: 1px solid rgba(166, 193, 255, 0.96);
+	border-radius: 2px;
+	height: 24px;
+}
+
+.flight_detail_dialogs_date {
+	clear: left;
+	float: left;
+	margin: 0 6px 5px 10px;
+	border: 1px solid rgba(166, 193, 255, 0.96);
+	border-radius: 2px;
+	width: 103px;
+	height: 21px;
+}
+
+.flight_detail_dialogs_time {
+	float: left;
+	clear: right;
+	margin: 0 10px 5px 0px;
+	border: 1px solid rgba(166, 193, 255, 0.96);
+	border-radius: 2px;
+	width: 63px;
+	height: 21px;
+}
+
+.flight_detail_dialogs_reminder {
+	border: 1px solid transparent;
+	padding: 2px 3px 1px 3px;
+	margin: 1px 1px 2px 1px;
+	height:auto!important;
+	height:19px;
+	min-height:19px;
+	display: none;
+}
+
+.flight_detail_dialogs_title {
+	float: left;
+	clear: both;
+	font-weight: bold;
+}
+
+/*.flowcontrol_detail_dialog {*/
+	/*text-decoration:underline;*/
+	/*color: #7177FF;*/
+	/*cursor: pointer;*/
+/*}*/
+
+.dhx_popup_warn {
+	color: #db9c23;
+}
+
+.dhx_popup_error {
+	color: #ff3d33;
+}
+/*����Ӵ�*/
+.font-bold label{
+	font-weight: bold;
+	margin-bottom: 0;
+}
+.flight_detail_container .flight_detail_title label {
+	font-size: 20px;
+	line-height: 30px;
+	font-weight: bold;
+	margin-right: 14px;
+}
