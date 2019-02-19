@@ -385,9 +385,17 @@ var FlowStatistic = function () {
             d['sort'] = obj[i].sort;
             arr.push(d);
         }
-        //排序
+        //排序 升序
         var sortArr = arr.sort(function(a,b){
-            return a.sort*1 > b.sort*1;
+            var a_sort = a.sort*1;
+            var b_sort = b.sort*1;
+            if(a_sort > b_sort){
+                return 1;
+            }else if(a_sort < b_sort){
+                return -1;
+            }else{
+                return 0;
+            }
         });
         // 取排序后的名称
         var result = [];
