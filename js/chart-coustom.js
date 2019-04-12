@@ -88,6 +88,7 @@ PieCharts.prototype.getOption = function () {
         // },
         grid: {
             bottom: 0,
+            right:0,
             top: 0
         },
         tooltip : {
@@ -107,10 +108,11 @@ PieCharts.prototype.getOption = function () {
             show : true,
             type: 'scroll',
             orient: 'vertical',
-            itemWidth: 16,
-            itemHeight: 9,
-            left: '0',
-            top : '16',
+            itemWidth: 8,
+            itemHeight: 8,
+            itemGap:8,
+            left: '-2',
+            top : '12',
             bottom : '0',
             data: thisProxy.data.legend,
             formatter: function (name ) {
@@ -122,9 +124,11 @@ PieCharts.prototype.getOption = function () {
             {
                 name: thisProxy.title,
                 type: 'pie',
-                roam:true,
-                selectedMode: 'single',
+                // clockwise: false,
+                // roam:true,
+                // selectedMode: 'single',
                 avoidLabelOverlap: true,
+                center: ['60%', '50%'],
                 radius: ['0%', '0%'],
                 label: {
                     normal: {
@@ -150,7 +154,8 @@ PieCharts.prototype.getOption = function () {
             {
                 name: thisProxy.seriesName,
                 type: 'pie',
-                selectedMode: 'single',
+                center: ['60%', '50%'],
+                // selectedMode: 'single',
                 radius: thisProxy.radius,
                 data: thisProxy.data.seriesData.reverse(),// 注意,此处颠倒数组中元素的顺序，用于逆时针显示条目
                 avoidLabelOverlap: true,

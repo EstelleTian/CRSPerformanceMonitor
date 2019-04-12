@@ -9,6 +9,9 @@
     flex-direction: row;
     height: 100%;
 }
+.flow_statistic > div.col-md-4 {
+    padding: 2px;
+}
 .rankings_table_container {
     padding-right: 5px;
 }
