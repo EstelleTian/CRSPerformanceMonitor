@@ -1534,19 +1534,28 @@ var FlightCoordinationDetailAndOperation = function () {
     };
 
     var flight = dataobj;
+
     var flightCoordinationRecords = dataobj['coordinationRecords'];
     fc = flight;
-    if($.isValidVariable(dataobj.formerId)){
+    // 前段航班ID
+    var formerId = '';
+    if($.isValidVariable(dataobj.formerId) ){
+      formerId = dataobj.formerId
+    }else if($.isValidObject(dataobj.fmeToday) && $.isValidVariable(dataobj.fmeToday.formerId) ){
+          formerId = dataobj.fmeToday.formerId;
+    }
+
+    if($.isValidVariable(formerId)){
       var userid = localStorage.getItem("userId");
       var onlyValue = localStorage.getItem("onlyValue");
       if($.isValidVariable(userid)&&$.isValidVariable(onlyValue)){
         $.ajax({
-          url: ipHost + "crs_system/flight?userid="+userid+"&onlyValue="+onlyValue+" &id="+dataobj.formerId,
+          url: ipHost + "crs_system/flight?userid="+userid+"&onlyValue="+onlyValue+" &id="+formerId,
           type: 'GET',
           dataType: 'json',
           success: function (data, status, xhr) {
             if ( data!= null &&data.status == 200 &&$.isValidObject(data.result) ) {
-              var formerFlight = data.result[dataobj.formerId]
+              var formerFlight = data.result[formerId]
               clearCollaborateTable(flightid);
               fireFlightDetailDataChange(flight, formerFlight, flightCoordinationRecords, generate_time,flightid);
               //bindFlowcontrolDetailDialog(flight);
