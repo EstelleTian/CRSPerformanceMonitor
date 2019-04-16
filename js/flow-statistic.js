@@ -93,7 +93,8 @@ var FlowStatistic = function () {
                 }*/
             },onGroundFcs: {
                 en: 'onGroundFcs',
-                cn: '地面',
+                cn: '区内未起飞',
+                width : 80,
                 formatter: CommonData.flowsFormater
             },inSkyFcs: {
                 en: 'inSkyFcs',

@@ -80,6 +80,12 @@
                                     <ul class="monitor_items">
                                         <li class="item">
                                             <div class="num">
+                                                <p class="num_item_single flights_total_flowcontrol"></p>
+                                            </div>
+                                            <p class="num_name ">已放行总量</p>
+                                        </li>
+                                        <li class="item">
+                                            <div class="num">
                                                 <p class="num_item_single">
                                                     <a class="now_control"></a>
                                                     <!--<span class="mark_left">当前</span>-->
@@ -90,7 +96,7 @@
                                                     <!--<span class="mark_right">总数</span>-->
                                                 <!--</p>-->
                                             </div>
-                                            <p class="num_name fcs">当前受控总量</p>
+                                            <p class="num_name fcs">待放行总量</p>
                                         </li>
                                         <li class="item">
                                             <div class="num">
@@ -108,22 +114,42 @@
                                         </li>
                                         <li class="item">
                                             <div class="num">
-                                                <p class="num_item_single area_out"></p>
+                                                <!--<p class="num_item_single "></p>-->
                                             </div>
-                                            <p class="num_name mb0">区外起飞航班</p>
+                                            <p class="num_name "></p>
+                                        </li>
+                                        <!--<li class="item">-->
+                                            <!--<div class="num">-->
+                                                <!--<p class="num_item_single area_out"></p>-->
+                                            <!--</div>-->
+                                            <!--<p class="num_name mb0"></p>-->
                                             <!--<p class="sub_name">（分配时隙）</p>-->
-                                        </li>
-                                        <li class="item">
-                                            <div class="num">
-                                                <p class="num_item_single area_in"></p>
-                                            </div>
-                                            <p class="num_name ">区内起飞航班</p>
-                                        </li>
+                                        <!--</li>-->
+                                        <!--<li class="item">-->
+                                            <!--<div class="num">-->
+                                                <!--<p class="num_item_single area_out"></p>-->
+                                            <!--</div>-->
+                                            <!--<p class="num_name mb0">区外起飞航班</p>-->
+                                            <!--&lt;!&ndash;<p class="sub_name">（分配时隙）</p>&ndash;&gt;-->
+                                        <!--</li>-->
+                                        <!--<li class="item">-->
+                                            <!--<div class="num">-->
+                                                <!--<p class="num_item_single area_in"></p>-->
+                                            <!--</div>-->
+                                            <!--<p class="num_name ">区内起飞航班</p>-->
+                                        <!--</li>-->
                                         <li class="item bb0">
                                             <div class="num">
                                                 <p class="num_item_single flights_exempt"></p>
                                             </div>
                                             <p class="num_name ">豁免航班</p>
+                                        </li>
+
+                                        <li class="item bb0">
+                                            <div class="num">
+                                                <p class="num_item_single manualIntervention"></p>
+                                            </div>
+                                            <p class="num_name ">人工干预航班</p>
                                         </li>
                                         <li class="item bb0">
                                             <div class="num">
@@ -133,15 +159,9 @@
                                         </li>
                                         <li class="item bb0">
                                             <div class="num">
-                                                <p class="num_item_single manualIntervention"></p>
+                                                <!--<p class="num_item_single "></p>-->
                                             </div>
-                                            <p class="num_name ">人工干预航班</p>
-                                        </li>
-                                        <li class="item bb0">
-                                            <div class="num">
-                                                <p class="num_item_single flights_close_wait"></p>
-                                            </div>
-                                            <p class="num_name ">关门等待航班</p>
+                                            <p class="num_name "></p>
                                         </li>
                                         <div class="circle"></div>
                                         <div class="circle1"></div>
@@ -154,51 +174,70 @@
                                     <ul class="monitor_items">
                                         <li class="item">
                                             <div class="num">
-                                                <p class="num_item_single flights_total_flowcontrol"></p>
-                                            </div>
-                                            <p class="num_name ">受控总量</p>
-                                        </li>
-                                        <li class="item">
-                                            <div class="num">
-                                                <p class="num_item">
-                                                    <a class="already_release_in"></a>
-                                                    <!--<span class="mark_left">区内</span>-->
-                                                </p>
-                                                <span class="line"></span>
-                                                <p class="num_item">
-                                                    <a class="already_release_out"></a>
-                                                    <span class="mark_right">飞越</span>
-                                                </p>
-                                            </div>
-                                            <div class="num_name fcs">已起飞航班</div>
-                                        </li>
-                                        <li class="item">
-                                            <div class="num">
-                                                <p class="num_item_single already_release_precent"></p>
-                                            </div>
-                                            <p class="num_name ">已放行执行率</p>
-                                        </li>
-                                        <li class="item">
-                                            <div class="num">
                                                 <p class="num_item_single late_unfly"></p>
                                             </div>
-                                            <p class="num_name ">延误未起飞</p>
+                                            <p class="num_name ">地面延误航班</p>
                                         </li>
                                         <li class="item bb0">
                                             <div class="num">
-
-                                                <p class="num_item">
-                                                    <a class="wait_fly_in"></a>
-                                                    <!--<span class="mark_left">区内</span>-->
-                                                </p>
-                                                <span class="line"></span>
-                                                <p class="num_item">
-                                                    <a class="wait_fly_out"></a>
-                                                    <span class="mark_right">飞越</span>
-                                                </p>
+                                                <p class="num_item_single flights_close_wait"></p>
                                             </div>
-                                            <p class="num_name ">未起飞航班</p>
+                                            <p class="num_name ">关舱门等待航班</p>
                                         </li>
+                                        <li class="item">
+                                            <div class="num">
+                                                <!--<p class="num_item_single "></p>-->
+                                            </div>
+                                            <p class="num_name "></p>
+                                        </li>
+                                        <li class="item">
+                                            <div class="num">
+                                                <!--<p class="num_item_single "></p>-->
+                                            </div>
+                                            <p class="num_name "></p>
+                                        </li>
+                                        <!--<li class="item">-->
+                                            <!--<div class="num">-->
+                                                <!--<p class="num_item_single flights_total_flowcontrol"></p>-->
+                                            <!--</div>-->
+                                            <!--<p class="num_name ">已放行总量</p>-->
+                                        <!--</li>-->
+                                        <!--<li class="item">-->
+                                            <!--<div class="num">-->
+                                                <!--<p class="num_item">-->
+                                                    <!--<a class="already_release_in"></a>-->
+                                                    <!--&lt;!&ndash;<span class="mark_left">区内</span>&ndash;&gt;-->
+                                                <!--</p>-->
+                                                <!--<span class="line"></span>-->
+                                                <!--<p class="num_item">-->
+                                                    <!--<a class="already_release_out"></a>-->
+                                                    <!--<span class="mark_right">飞越</span>-->
+                                                <!--</p>-->
+                                            <!--</div>-->
+                                            <!--<div class="num_name fcs">已起飞航班</div>-->
+                                        <!--</li>-->
+                                        <!--<li class="item">-->
+                                            <!--<div class="num">-->
+                                                <!--<p class="num_item_single already_release_precent"></p>-->
+                                            <!--</div>-->
+                                            <!--<p class="num_name ">已放行执行率</p>-->
+                                        <!--</li>-->
+
+                                        <!--<li class="item bb0">-->
+                                            <!--<div class="num">-->
+
+                                                <!--<p class="num_item">-->
+                                                    <!--<a class="wait_fly_in"></a>-->
+                                                    <!--&lt;!&ndash;<span class="mark_left">区内</span>&ndash;&gt;-->
+                                                <!--</p>-->
+                                                <!--<span class="line"></span>-->
+                                                <!--<p class="num_item">-->
+                                                    <!--<a class="wait_fly_out"></a>-->
+                                                    <!--<span class="mark_right">飞越</span>-->
+                                                <!--</p>-->
+                                            <!--</div>-->
+                                            <!--<p class="num_name ">未起飞航班</p>-->
+                                        <!--</li>-->
                                         <li class="item bb0">
                                             <div class="num">
                                                 <p class="num_item_single last_one"></p>

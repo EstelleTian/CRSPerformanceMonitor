@@ -185,7 +185,7 @@ var Flight = function () {
       var winObj = {
         winId: "flightsCurrentFlowcontrol",
         winHead: "航班监控",
-        detail: "当前受控总量"
+        detail: "待放行总量"
       };
       initGridWindow(winObj, Flight.flightMonitorData.flightsCurrentFlowcontrol, CommonData.generateTime);
     });
@@ -266,7 +266,7 @@ var Flight = function () {
       var winObj = {
         winId: "flightsCloseWait",
         winHead: "航班监控",
-        detail: "关门等待航班"
+        detail: "关舱门等待航班"
       };
       initGridWindow(winObj, Flight.flightMonitorData.flightsCloseWait, CommonData.generateTime);
     });
@@ -297,7 +297,7 @@ var Flight = function () {
       var winObj = {
         winId: "flightsDelayNoFly",
         winHead: "航班监控",
-        detail: "延误未起飞航班"
+        detail: "地面延误航班"
       };
       initGridWindow(winObj, Flight.flightMonitorData.flightsDelayNoFly, CommonData.generateTime);
     });
@@ -306,7 +306,7 @@ var Flight = function () {
       var winObj = {
         winId: "flightsPlanDelay",
         winHead: "航班监控",
-        detail: "受控总量"
+        detail: "已放行总量"
       };
       initGridWindow(winObj, Flight.flightMonitorData.flightsTotalFlowcontrol, CommonData.generateTime);
     });
