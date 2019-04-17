@@ -568,16 +568,7 @@ var CommonData = function () {
             return '';
         }
     };
-    /**
-     * 设置单元格内容样式为可链接(仿<a>标签样式)
-     * */
-    function linkFormater(cellvalue, options, rowObject) {
-        if ($.isValidVariable(cellvalue)) {
-            return '<span class="link_cell">'+ cellvalue + '</span>';
-        } else if ($.isValidVariable(rowObject.assignSlot)) {
-            return cellvalue
-        }
-    }
+
 
 
     /**
@@ -1378,7 +1369,6 @@ var CommonData = function () {
         initTableParams: initTableParams,
         initFlightTableParams: initFlightTableParams,
         flowsFormater: flowsFormater,
-        linkFormater : linkFormater,
         createDhxWindow: createDhxWindow,
         createFlowDetailDhxWindow: createFlowDetailDhxWindow,
         timerValve: timerValve
