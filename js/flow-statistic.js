@@ -74,7 +74,13 @@ var FlowStatistic = function () {
                  classes : 'link_cell',
                 frozen : true,
                 width : 150
-            },typeZH: {
+            },statusZH:{
+                en: 'statusZH',
+                cn: '状态',
+                classes: CommonData.classNameFormater,
+                width : 70
+            },
+            typeZH: {
                 en: 'typeZH',
                 cn: '限制类型',
                 width : 70
@@ -150,7 +156,13 @@ var FlowStatistic = function () {
                 if(regexp.test(title)){
                     title = title.substring(0,8) +' '+ title.substring(8,10) + ":" + title.substring(10,12);
                 }*/
-                // attrs = ' title="' + title + '"';
+                // attrs += ' title="' + title + '"';
+                // 状态列
+                if(colName == 'statusZH'){
+                    var className = setFlowcontrolStatusCellClassName(rowObject);
+                    console.log(rowObject)
+                    attrs = 'class="'+ className +'"';
+                }
 
                 return attrs;
             }
@@ -577,6 +589,7 @@ var FlowStatistic = function () {
                         // 弹出DCB计算历史记录页面
                         CommonData.createDhxWindow(opt);
                     }
+                    console.log(rowid, iCol, cellcontent );
 
                 }
             }
@@ -640,6 +653,43 @@ var FlowStatistic = function () {
      * */
     var initDefaultRangkingTag = function () {
         tag = $('.rankings_filter').val();
+    };
+
+    /**
+     * 设置流控状态列单元格css class
+     * */
+    var setFlowcontrolStatusCellClassName = function (data) {
+        var className = '';
+        var status = data.status;
+        if($.isValidVariable(status)){
+            switch (status){
+                //正在执行
+                case 'RUNNING':
+                    className ='status status_running';
+                    break;
+                // 人工终止
+                case 'TERMINATED':
+                    className ='status status_terminated';
+                    break;
+                // 正常结束
+                case 'FINISHED':
+                    className ='status status_finished';
+                    break;
+                // 已发布
+                case 'PUBLISH':
+                    className ='status status_terminated';
+                    break;
+                // 将要执行
+                case 'FUTURE':
+                    className ='status status_future';
+                    break;
+                // 系统终止
+                case 'STOP':
+                    className ='status status_stop';
+                    break;
+            }
+        };
+        return className;
     };
 
     return {

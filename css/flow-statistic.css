@@ -202,4 +202,8 @@
     color: #337ab7;
     white-space: normal;
 }
+.ui-jqgrid .ui-jqgrid-btable tbody tr.jqgrow td {
+
+    vertical-align: middle;
+}
 .table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {padding: 2px;}
