@@ -145,7 +145,14 @@ var CommonData = function () {
                 } else if (regexp.test(title) && len == 14) { //14位有效时间
                     title = title.substring(0, 8) + ' ' + title.substring(8, 10) + ":" + title.substring(10, 12) + ':' + title.substring(12, 14);
                 }
-                attrs = ' title="' + title + '"';
+                var colName = colModel.name;
+                // 状态列
+                if(colName == 'statusZH'){
+                    var className = setFlowcontrolStatusCellClassName(rowObject);
+                    console.log(rowObject)
+                    attrs = 'class="'+ className +'"';
+                }
+                attrs += ' title="' + title + '"';
                 return attrs;
             },
             sortfunc : function(a, b, direction) {
@@ -1352,6 +1359,42 @@ var CommonData = function () {
         }
         //循环结束
         return paramsObj;
+    };
+    /**
+     * 设置流控状态列单元格css class
+     * */
+    var setFlowcontrolStatusCellClassName = function (data) {
+        var className = '';
+        var status = data.status;
+        if($.isValidVariable(status)){
+            switch (status){
+                //正在执行
+                case 'RUNNING':
+                    className ='status status_running';
+                    break;
+                // 人工终止
+                case 'TERMINATED':
+                    className ='status status_terminated';
+                    break;
+                // 正常结束
+                case 'FINISHED':
+                    className ='status status_finished';
+                    break;
+                // 已发布
+                case 'PUBLISH':
+                    className ='status status_terminated';
+                    break;
+                // 将要执行
+                case 'FUTURE':
+                    className ='status status_future';
+                    break;
+                // 系统终止
+                case 'STOP':
+                    className ='status status_stop';
+                    break;
+            }
+        };
+        return className;
     };
 
     return {
