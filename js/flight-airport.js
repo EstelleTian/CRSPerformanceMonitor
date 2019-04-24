@@ -462,7 +462,7 @@ var Flight = function () {
     $.each(dataobj.runwayList, function (i, e) {
       string += '<tr class="single"><td>' + (parseInt(i) + 1) + '</td><td>' + e.logicRwName + '</td><td class="demand" runway = '+e.logicRwName+' historytime = '+dataobj.startDateTime+'>' + e.demandValue + '</td><td>' + e.capcityValue + '</td><td>' + e.dcIndex + '</td></tr>'
     })
-    var str = '<table class="table table-bordered"><thead><tr><th>序号</th><th>跑道</th><th>需求值</th><th>容量值</th><th>dcb指数</th></tr></thead><tbody>' + string + '<tr><td>统计</td><td></td><td class="all-demand demand" apName = '+dataobj.apName+' historytime = '+dataobj.startDateTime+'>' + dataobj.rwDemandSumCount + '</td><td>' + dataobj.rwCapcitySumCount + '</td><td></td></tr>' + '</tbody></table><p>提示: 机场跑道DCB总值(' + dataobj.dcIndexSumCount + ') = ' + dataobj.rwDemandSumCount + '/' + dataobj.rwCapcitySumCount + '</p>';
+    var str = '<table class="table table-bordered"><thead><tr><th>序号</th><th>跑道方向</th><th>需求值</th><th>容量值</th><th>dcb指数</th></tr></thead><tbody>' + string + '<tr><td>统计</td><td></td><td class="all-demand demand" apName = '+dataobj.apName+' historytime = '+dataobj.startDateTime+'>' + dataobj.rwDemandSumCount + '</td><td>' + dataobj.rwCapcitySumCount + '</td><td></td></tr>' + '</tbody></table><p>提示: 机场跑道DCB总值(' + dataobj.dcIndexSumCount + ') = ' + dataobj.rwDemandSumCount + '/' + dataobj.rwCapcitySumCount + '</p>';
     return str
   }
   
@@ -1368,7 +1368,7 @@ var Flight = function () {
     var colName ={
       logicRwName: {
         en: "logicRwName",
-        cn:"跑道"
+        cn:"跑道方向"
       },
       demandValue: {
         en: "demandValue",
@@ -1412,7 +1412,7 @@ var Flight = function () {
       },
     }
     var colTitle = {
-      logicRwName:"跑道",
+      logicRwName:"跑道方向",
       demandValue:"需求值",
       capcityValue:"容量值",
       dcIndex: "dcb指数",
