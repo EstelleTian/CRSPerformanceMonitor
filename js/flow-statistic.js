@@ -106,11 +106,19 @@ var FlowStatistic = function () {
                 en: 'inSkyFcs',
                 cn: '空中',
                 formatter: CommonData.flowsFormater
-            },leapFcs: {
-                en: 'leapFcs',
-                cn: '飞越',
+            }, skyLeapFcs: {
+                en: 'skyLeapFcs',
+                cn: '飞越(空中)',
+                width : 80,
                 formatter: CommonData.flowsFormater
-            },total : {
+            },
+            groundLeapFcs: {
+                en: 'groundLeapFcs',
+                cn: '飞越(地面)',
+                width : 80,
+                formatter: CommonData.flowsFormater
+            },
+            total : {
                 en: 'total',
                 cn: '总数',
                 formatter: CommonData.flowsFormater
@@ -145,7 +153,7 @@ var FlowStatistic = function () {
                 // var title =  rowObject[colModel.name];
                 var colName = colModel.name;
                 // 若单元此单元格对应的colName为地面、空中、飞越、总数,则调整该单元格样式
-                if(colName == 'onGroundFcs' || colName == 'inSkyFcs' || colName == 'leapFcs' || colName == 'total' || colName == 'dcb'){
+                if(colName == 'onGroundFcs' || colName == 'inSkyFcs' || colName == 'skyLeapFcs' || colName == 'groundLeapFcs' || colName == 'total' || colName == 'dcb'){
                     attrs = 'style="color:#337ab7; cursor: pointer"';
                 }
                 /*if(!$.isValidVariable(title)){
@@ -544,7 +552,8 @@ var FlowStatistic = function () {
                     var colModel = rankingsTableObj.gridTableObject.jqGrid('getGridParam')['colModel'];
                     var colName =colModel[iCol].name;
                     // 若单元此单元格对应的colName为地面、空中、飞越、总数,则为被格式化显示的航班Id集合单元格
-                    if(colName == 'onGroundFcs' || colName == 'inSkyFcs' || colName == 'leapFcs' || colName == 'total'){
+                    if(colName == 'onGroundFcs' || colName == 'inSkyFcs' ||
+                        colName == 'skyLeapFcs' || colName == 'groundLeapFcs' || colName == 'total'){
 
                         // 取表格的tableDataMap数据对应该字段的数值
                         var val = rankingsTableObj.tableDataMap[rowid][colName];
