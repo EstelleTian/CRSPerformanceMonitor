@@ -266,8 +266,8 @@ var FlowStatistic = function () {
         dataStructure.status.seriesData = [];
         dataStructure.status.flows = {};
         //统计seriesData
-        if($.isValidObject(FlowStatistic.allData.status)){
-            var obj = FlowStatistic.allData.status;
+        if($.isValidObject(FlowStatistic.allData.statuss)){
+            var obj = FlowStatistic.allData.statuss;
             // 按指定排序依据遍历
             sortKey.status.map(function (item, index, arr) {
                 // 获取对应流控数据
@@ -379,8 +379,8 @@ var FlowStatistic = function () {
         }
 
         // 状态
-        if($.isValidObject(FlowStatistic.allData.status)){
-            sortKey.status = sortRule(FlowStatistic.allData.status);
+        if($.isValidObject(FlowStatistic.allData.statuss)){
+            sortKey.status = sortRule(FlowStatistic.allData.statuss);
         }
 
         // 原因
