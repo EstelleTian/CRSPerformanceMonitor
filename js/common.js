@@ -4,7 +4,7 @@ var CommonData = function () {
     var timerValve = true;
 
     //用户ID
-    var userid = localStorage.getItem("userId");
+    var userId = localStorage.getItem("userId");
     //登录唯一值
     var onlyValue = localStorage.getItem("onlyValue");
 
@@ -12,7 +12,7 @@ var CommonData = function () {
     var  user_property = JSON.parse(localStorage.getItem('userProperty'))
 
     // 数据请求地址  showNums:显示流控排名数量 flag:是否获取参与流控统计计算的航班数据
-    var dataStatisticURL = ipHost + 'crs_system/data_statistic?userid=' + userid + "&onlyValue=" + onlyValue + '&showNums=' + 10 + '&flag=true';
+    var dataStatisticURL = ipHost + 'crs_system/data_statistic?userId=' + userId + "&onlyValue=" + onlyValue + '&showNums=' + 10 + '&flag=true';
 
     /**
      * 流控表格配置
@@ -420,7 +420,7 @@ var CommonData = function () {
                         //流控数据
                         FlowStatistic.flowData = data.result.flows;
                         // 参与流控统计计算的航班数据
-                        FlowStatistic.flightData = data.result.fcs;
+                        FlowStatistic.flightData = data.result.flights;
                         //数据生成时间
                         CommonData.generateTime = data.generateTime;
                         // CommonData.generateTime = formateTime(data.generateTime) ;
@@ -493,7 +493,7 @@ var CommonData = function () {
      *
      * */
     var getDCBData = function (opt, table) {
-        var url = ipHost + 'crs_system/flow_id_dcb_history_detail?userid='+ userid+'&onlyValue='+ onlyValue +'&id='+opt.id;
+        var url = ipHost + 'crs_system/flow_id_dcb_history_detail?userId='+ userId+'&onlyValue='+ onlyValue +'&id='+opt.id;
         //统计数据
         $.ajax({
             url: url,
@@ -523,7 +523,7 @@ var CommonData = function () {
      *
      * */
     var getDCBDemandFlightData = function (opt, table) {
-        var url = ipHost + 'crs_system/flow_dcb_demand_detail?userid='+ userid+'&onlyValue='+ onlyValue +'&id='+opt.id+'&time=' + opt.time;
+        var url = ipHost + 'crs_system/flow_dcb_demand_detail?userId='+ userId+'&onlyValue='+ onlyValue +'&id='+opt.id+'&time=' + opt.time;
         //统计数据
         $.ajax({
             url: url,
@@ -710,7 +710,7 @@ var CommonData = function () {
      *  获取流控详情数据
      * */
     var getFlowById = function (id, dialogId) {
-        var url = ipHost+ 'crs_system/flow_id_detail?userid=' + userid + '&onlyValue=' + onlyValue + '&id=' + id;
+        var url = ipHost+ 'crs_system/flow_id_detail?userId=' + userId + '&onlyValue=' + onlyValue + '&id=' + id;
         $.ajax({
             url: url,
             type: 'GET',

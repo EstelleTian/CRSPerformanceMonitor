@@ -1,7 +1,7 @@
 var FlowStatistic = function () {
 
     // 数据请求地址  showNums:显示流控排名数量 flag:是否获取参与流控统计计算的航班数据
-    // var dataURL = ipHost + 'data_statistic?userid=' + userid + '&showNums=' + 10 +'&flag=true' ;
+    // var dataURL = ipHost + 'data_statistic?userId=' + userId + '&showNums=' + 10 +'&flag=true' ;
     //全部数据
     var allData = {};
     // 流控数据对象

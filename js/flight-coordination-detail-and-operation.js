@@ -1546,11 +1546,11 @@ var FlightCoordinationDetailAndOperation = function () {
     }
 
     if($.isValidVariable(formerId)){
-      var userid = localStorage.getItem("userId");
+      var userId = localStorage.getItem("userId");
       var onlyValue = localStorage.getItem("onlyValue");
-      if($.isValidVariable(userid)&&$.isValidVariable(onlyValue)){
+      if($.isValidVariable(userId)&&$.isValidVariable(onlyValue)){
         $.ajax({
-          url: ipHost + "crs_system/flight?userid="+userid+"&onlyValue="+onlyValue+" &id="+formerId,
+          url: ipHost + "crs_system/flight?userId="+userId+"&onlyValue="+onlyValue+" &id="+formerId,
           type: 'GET',
           dataType: 'json',
           success: function (data, status, xhr) {

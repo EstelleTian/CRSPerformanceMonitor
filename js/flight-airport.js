@@ -13,7 +13,7 @@ var Flight = function () {
   //数据刷新时间
   var generateTime = null;
   //用户ID
-  var userid = localStorage.getItem("userId");
+  var userId = localStorage.getItem("userId");
   //登录唯一值
   var onlyValue = localStorage.getItem("onlyValue");
   //用户名
@@ -34,7 +34,7 @@ var Flight = function () {
    var initFlightMonitor = function (refresh) {
    $.ajax({
    type: "GET",
-   url: ipHost + "crs_system/data_statistic?userid="+userid,
+   url: ipHost + "crs_system/data_statistic?userId="+userId,
    data: {},
    dataType: "json",
    success: function (data) {
@@ -114,7 +114,7 @@ var Flight = function () {
       nextHourEstimateRelease: [],
       alreadyReleaseExeRate: ''
     };
-    var flightTotalData = data.fcs;
+    var flightTotalData = data.flights;
     flightMonitorDirection = $('.direction_filter').val();
     $.each(flightData, function (i, e) {
       if (e != 'alreadyReleaseExeRate') {
@@ -408,7 +408,7 @@ var Flight = function () {
                   var apName = $(this).attr('apName');
                   $.ajax({
                     type: "GET",
-                    url: ipHost + "crs_system/runway_dcb_history_detail?userid=" + userid + "&onlyValue=" + onlyValue + '&apName=' + apName,
+                    url: ipHost + "crs_system/runway_dcb_history_detail?userId=" + userId + "&onlyValue=" + onlyValue + '&apName=' + apName,
                     dataType: "json",
                     success: function (data) {
                       if (data.status == 200) {
@@ -507,7 +507,7 @@ var Flight = function () {
   var initAirportData = function (refresh) {
     $.ajax({
       type: "GET",
-      url: ipHost + "crs_system/airports_monitor?userid=" + userid + "&onlyValue=" + onlyValue,
+      url: ipHost + "crs_system/airports_monitor?userId=" + userId + "&onlyValue=" + onlyValue,
       dataType: "json",
       success: function (data) {
         if (data.status == 200) {
@@ -733,7 +733,7 @@ var Flight = function () {
         //       var apName = $(this).attr('apName');
         //       $.ajax({
         //         type: "GET",
-        //         url: ipHost + "crs_system/runway_dcb_history_detail?userid="+userid+"&onlyValue="+onlyValue+'&apName='+apName,
+        //         url: ipHost + "crs_system/runway_dcb_history_detail?userId="+userId+"&onlyValue="+onlyValue+'&apName='+apName,
         //         dataType: "json",
         //         success: function (data) {
         //           if(data.status == 200){
@@ -1115,9 +1115,9 @@ var Flight = function () {
   var allHistoryDcbFlight = function (apName, historyTime, runWay) {
     var searchUrl = '';
     if ($.isValidVariable(runWay)) {
-      searchUrl = ipHost + "crs_system/runway_dcb_demand_detail?userid=" + userid + "&onlyValue=" + onlyValue + '&apName=' + apName + '&runway=' + runWay + '&time=' + historyTime
+      searchUrl = ipHost + "crs_system/runway_dcb_demand_detail?userId=" + userId + "&onlyValue=" + onlyValue + '&apName=' + apName + '&runway=' + runWay + '&time=' + historyTime
     } else {
-      searchUrl = ipHost + "crs_system/runway_dcb_demand_detail?userid=" + userid + "&onlyValue=" + onlyValue + '&apName=' + apName + '&runway=&time=' + historyTime
+      searchUrl = ipHost + "crs_system/runway_dcb_demand_detail?userId=" + userId + "&onlyValue=" + onlyValue + '&apName=' + apName + '&runway=&time=' + historyTime
     }
     $.ajax({
       type: "GET",
@@ -1550,7 +1550,7 @@ var Flight = function () {
         type: "POST",
         url: ipHost + "crs_system/userLogout",
         data: {
-          userid: userId,
+          userId: userId,
           onlyValue: onlyValue
         },
         success: function (data) {
