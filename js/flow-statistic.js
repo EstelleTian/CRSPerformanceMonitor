@@ -278,9 +278,14 @@ var FlowStatistic = function () {
             var obj = FlowStatistic.allData.statuss;
             // 按指定排序依据遍历
             sortKey.status.map(function (item, index, arr) {
+                // 过滤掉TERMINATED
+                if(item == 'TERMINATED'){
+                    return
+                }
                 // 获取对应流控数据
                 var data = obj[item];
                 if($.isValidVariable(data)){
+
                     // 设置数据结构中状态字段相关数值
                     dataStructure.status.legend.push(item);
                     dataStructure.status.legendZh.push(data.staticZh);
