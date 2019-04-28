@@ -29,91 +29,59 @@ var Flight = function () {
   var charDataArr = {
     charts: [],
     options: []
-  }
-  /*/!**初始化航班监控*!/
-   var initFlightMonitor = function (refresh) {
-   $.ajax({
-   type: "GET",
-   url: ipHost + "crs_system/data_statistic?userId="+userId,
-   data: {},
-   dataType: "json",
-   success: function (data) {
-   if($.isValidObject(data)){
-   if(Flight.Flight.Flight.flightMonitorData == null){
-   Flight.Flight.Flight.flightMonitorDataConvert(data.result);
-   Flight.Flight.CommonData.generateTime = data.generateTime
-   initFlightDataClick();
-   }else{
-   Flight.Flight.Flight.flightMonitorDataConvert(data.result);
-   Flight.Flight.CommonData.generateTime = data.generateTime
-   }
-   setFlightData(data.result);
-   }
-   //定时刷新
-   if(refresh){
-   startTimer(initFlightMonitor,Flight.Flight.Flight.flightMonitorData,true,30*1000);
-   }
-   },
-   error  : function (xhr, status) {
-   console.error('retrieve flow data failed, state:');
-   console.error(status);
-   setTimeout(function () {
-   initFlightMonitor(true);
-   }, 60*1000*5);
-   }
-   });
-   };*/
+  };
+
   /**
    * 航班监控数据转换
-   * @type {{now_control: string, has_single: string, no_single: string, area_out: string, area_in: string, flights_exempt: string, flights_pool_in: string, manualIntervention: string, flights_close_wait: string, already_release_in: string, already_release_out: string, already_release_precent: string, late_unfly: string, flightsTotalFlowcontrol: string, wait_fly_in: string, wait_fly_out: string, last_one: string, now_one: string, next_one: string}}
    */
   var flightData = {
-    now_control: 'flightsCurrentFlowcontrol',
-    has_single: 'flyOverHasSignal',
-    no_single: 'flyOverNoSignal',
-    area_out: 'flightsAreaOut',
-    area_in: 'flightsAreaIn',
-    flights_exempt: 'flightsExempt',
-    flights_pool_in: 'flightsPoolIn',
-    manualIntervention: 'manualIntervention',
-    flights_close_wait: 'flightsCloseWait',
-    already_release_in: 'alreadyRelease',
-    already_release_out: 'alreadyReleaseFlyOver',
-    already_release_precent: 'alreadyReleaseExeRate',
-    late_unfly: 'flightsDelayNoFly',
-    flights_total_flowcontrol: 'flightsTotalFlowcontrol',
-    wait_fly_in: 'waitReleaseAreaIn',
-    wait_fly_out: 'waitReleaseAreaOut',
-    last_one: 'beforeHourActualRelease',
-    now_one: 'currentHourEstimateRelease',
-    next_one: 'nextHourEstimateRelease'
+      // now_control: 'flightsCurrentFlowcontrol',
+      // has_single: 'flyOverHasSignal',
+      // no_single: 'flyOverNoSignal',
+      // area_out: 'flightsAreaOut',
+      // area_in: 'flightsAreaIn',
+
+      // flights_total_flowcontrol: 'flightsTotalFlowcontrol',
+      // already_release_precent: 'alreadyReleaseExeRate',
+      already_release_in: 'alreadyRelease', // 已放行总量
+      flights_exempt: 'flightsExempt', // 豁免航班
+      flights_pool_in: 'flightsPoolIn', // 入池航班
+      manual_intervention: 'manualIntervention', // 人工干预航班
+      flights_close_wait: 'flightsCloseWait', // 关门等待航班
+      already_release_out: 'alreadyReleaseFlyOver', // 已出区域量（飞越）
+      flights_delay_no_fly: 'flightsDelayNoFly', // 地面延误航班
+      wait_release_area_in: 'waitReleaseAreaIn', // 待放行总量
+      wait_release_area_out: 'waitReleaseAreaOut',  // 未出区域量（飞越）
+      before_hour_actual_release: 'beforeHourActualRelease', // 上一小时实际放行航班
+      current_hour_estimate_release: 'currentHourEstimateRelease', // 当前一小时预计放行航班
+      next_hour_estimate_release: 'nextHourEstimateRelease' // 下一小时预计放行航班
   }
   /**
    * 航班监控数据转换
    * @param data
    */
   var flightMonitorDataConvert = function (data) {
-    Flight.flightMonitorData = {
-      flightsCurrentFlowcontrol: [],
-      flyOverHasSignal: [],
-      flyOverNoSignal: [],
-      flightsAreaOut: [],
-      flightsAreaIn: [],
-      flightsExempt: [],
-      flightsPoolIn: [],
-      manualIntervention: [],
-      flightsCloseWait: [],
-      alreadyRelease: [],
-      alreadyReleaseFlyOver: [],
-      flightsDelayNoFly: [],
-      flightsTotalFlowcontrol: [],
-      waitReleaseAreaIn: [],
-      waitReleaseAreaOut: [],
-      beforeHourActualRelease: [],
-      currentHourEstimateRelease: [],
-      nextHourEstimateRelease: [],
-      alreadyReleaseExeRate: ''
-    };
+      Flight.flightMonitorData = {
+          // flightsCurrentFlowcontrol: [],
+          // flyOverHasSignal: [],
+          // flyOverNoSignal: [],
+          // flightsAreaOut: [],
+          // flightsAreaIn: [],
+          // alreadyReleaseExeRate: ''
+          // flightsTotalFlowcontrol: [],
+          flightsExempt: [], // 豁免航班
+          flightsPoolIn: [], // 入池航班
+          manualIntervention: [], // 人工干预航班
+          alreadyRelease: [], // 已放行总量
+          alreadyReleaseFlyOver: [], // 已出区域量（飞越）
+          flightsDelayNoFly: [], // 地面延误航班
+          waitReleaseAreaIn: [], // 待放行总量
+          waitReleaseAreaOut: [], // 未出区域量（飞越）
+          beforeHourActualRelease: [], // 上一小时实际放行航班
+          currentHourEstimateRelease: [], // 当前一小时预计放行航班
+          nextHourEstimateRelease: [], // 下一小时预计放行航班
+
+      };
     var flightTotalData = data.flights;
     flightMonitorDirection = $('.direction_filter').val();
     $.each(flightData, function (i, e) {
@@ -180,15 +148,7 @@ var Flight = function () {
    * 初始化航班监控点击事件
    */
   var initFlightDataClick = function () {
-    //当前受控航班
-    $(".now_control").click(function () {
-      var winObj = {
-        winId: "flightsCurrentFlowcontrol",
-        winHead: "航班监控",
-        detail: "待放行总量"
-      };
-      initGridWindow(winObj, Flight.flightMonitorData.flightsCurrentFlowcontrol, CommonData.generateTime);
-    });
+
     //当前受控总航班
     $(".all_control").click(function () {
       var winObj = {
@@ -198,42 +158,7 @@ var Flight = function () {
       };
       initGridWindow(winObj, Flight.flightMonitorData.flightsCurrentFlowcontrol, CommonData.generateTime);
     });
-    //有信号飞越航班
-    $(".has_single").click(function () {
-      var winObj = {
-        winId: "flyOverHasSignal",
-        winHead: "航班监控",
-        detail: "飞越航班-有信号"
-      };
-      initGridWindow(winObj, Flight.flightMonitorData.flyOverHasSignal, CommonData.generateTime);
-    });
-    //无信号飞越航班
-    $(".no_single").click(function () {
-      var winObj = {
-        winId: "flyOverNoSignal",
-        winHead: "航班监控",
-        detail: "飞越航班-无信号"
-      };
-      initGridWindow(winObj, Flight.flightMonitorData.flyOverNoSignal, CommonData.generateTime);
-    });
-    //区外航班
-    $(".area_out").click(function () {
-      var winObj = {
-        winId: "flightsAreaOut",
-        winHead: "航班监控",
-        detail: "区外航班"
-      };
-      initGridWindow(winObj, Flight.flightMonitorData.flightsAreaOut, CommonData.generateTime);
-    });
-    //区内航班
-    $(".area_in").click(function () {
-      var winObj = {
-        winId: "flightsAreaIn",
-        winHead: "航班监控",
-        detail: "区内航班"
-      };
-      initGridWindow(winObj, Flight.flightMonitorData.flightsAreaIn, CommonData.generateTime);
-    });
+
     //豁免航班
     $(".flights_exempt").click(function () {
       var winObj = {
@@ -248,12 +173,12 @@ var Flight = function () {
       var winObj = {
         winId: "flightsPoolIn",
         winHead: "航班监控",
-        detail: "已入池航班"
+        detail: "入池航班"
       };
       initGridWindow(winObj, Flight.flightMonitorData.flightsPoolIn, CommonData.generateTime);
     });
     //人工干预航班
-    $(".manualIntervention").click(function () {
+    $(".manual_intervention").click(function () {
       var winObj = {
         winId: "manualIntervention",
         winHead: "航班监控",
@@ -270,30 +195,27 @@ var Flight = function () {
       };
       initGridWindow(winObj, Flight.flightMonitorData.flightsCloseWait, CommonData.generateTime);
     });
-    //
+    //已放行总量
     $(".already_release_in").click(function () {
       var winObj = {
         winId: "alreadyRelease",
         winHead: "航班监控",
-        detail: "已起飞航班"
+        detail: "已放行总量"
       };
       initGridWindow(winObj, Flight.flightMonitorData.alreadyRelease, CommonData.generateTime);
     });
-    //区外已放行
+    //已出区域量（飞越）
     $(".already_release_out").click(function () {
       var winObj = {
         winId: "alreadyReleaseFlyOver",
         winHead: "航班监控",
-        detail: "已起飞航班-飞越"
+        detail: "已出区域量（飞越）"
       };
       initGridWindow(winObj, Flight.flightMonitorData.alreadyReleaseFlyOver, CommonData.generateTime);
     });
-    //已放行执行率
-    // $(".already_release_precent").click(function(){
-    //     initGridWindow("alreadyReleaseExeRate",Flight.flightMonitorData.alreadyReleaseExeRate,CommonData.generateTime);
-    // });
-    //延误未起飞
-    $(".late_unfly").click(function () {
+
+    //地面延误航班
+    $(".flights_delay_no_fly").click(function () {
       var winObj = {
         winId: "flightsDelayNoFly",
         winHead: "航班监控",
@@ -301,57 +223,49 @@ var Flight = function () {
       };
       initGridWindow(winObj, Flight.flightMonitorData.flightsDelayNoFly, CommonData.generateTime);
     });
-    //预计延误起飞
-    $(".flights_total_flowcontrol").click(function () {
-      var winObj = {
-        winId: "flightsPlanDelay",
-        winHead: "航班监控",
-        detail: "已放行总量"
-      };
-      initGridWindow(winObj, Flight.flightMonitorData.flightsTotalFlowcontrol, CommonData.generateTime);
-    });
-    //区内待放行
-    $(".wait_fly_in").click(function () {
+
+    //待放行总量
+    $(".wait_release_area_in").click(function () {
       var winObj = {
         winId: "waitReleaseAreaIn",
         winHead: "航班监控",
-        detail: "未起飞航班"
+        detail: "待放行总量"
       };
       initGridWindow(winObj, Flight.flightMonitorData.waitReleaseAreaIn, CommonData.generateTime);
     });
-    //区外待放行
-    $(".wait_fly_out").click(function () {
+    //未出区域量（飞越）
+    $(".wait_release_area_out").click(function () {
       var winObj = {
         winId: "waitReleaseAreaOut",
         winHead: "航班监控",
-        detail: "未起飞航班-飞越"
+        detail: "未出区域量（飞越）"
       };
       initGridWindow(winObj, Flight.flightMonitorData.waitReleaseAreaOut, CommonData.generateTime);
     });
-    //上一小时
-    $(".last_one").click(function () {
+    //上一小时实际放行航班
+    $(".before_hour_actual_release").click(function () {
       var winObj = {
         winId: "beforeHourActualRelease",
         winHead: "航班监控",
-        detail: "上1小时实际放行"
+        detail: "上一小时实际放行航班"
       };
       initGridWindow(winObj, Flight.flightMonitorData.beforeHourActualRelease, CommonData.generateTime);
     });
-    //当前1小时
-    $(".now_one").click(function () {
+    //当前一小时预计放行航班
+    $(".current_hour_estimate_release").click(function () {
       var winObj = {
         winId: "currentHourEstimateRelease",
         winHead: "航班监控",
-        detail: "当前1小时预计放行"
+        detail: "当前一小时预计放行航班"
       };
       initGridWindow(winObj, Flight.flightMonitorData.currentHourEstimateRelease, CommonData.generateTime);
     });
-    //下一小时
-    $(".next_one").click(function () {
+    //下一小时预计放行航班
+    $(".next_hour_estimate_release").click(function () {
       var winObj = {
         winId: "nextHourEstimateRelease",
         winHead: "航班监控",
-        detail: "下1小时预计放行"
+        detail: "下一小时预计放行航班"
       };
       initGridWindow(winObj, Flight.flightMonitorData.nextHourEstimateRelease, CommonData.generateTime);
     });
