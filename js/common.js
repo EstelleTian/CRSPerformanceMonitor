@@ -431,7 +431,7 @@ var CommonData = function () {
                         FlowStatistic.convertData();
                         // 更新流控统计数据显示
                         FlowStatistic.fireDataChange();
-
+                        // 更新航班监控数据
                         if (Flight.flightMonitorData == null) {
                             Flight.flightMonitorDataConvert(data.result);
                             Flight.initFlightDirection(data.result);
@@ -440,13 +440,15 @@ var CommonData = function () {
                             Flight.flightMonitorDataConvert(data.result);
                         }
                         Flight.setFlightData(Flight.flightMonitorData);
+                        // 更新机场数据（右侧模块）
+                        Flight.fireAirportDataChange(data);
                     }else {
                         // 清空统计图表和流控排名表格
                         FlowStatistic.clear();
                         // 清空航班监控数据
                         Flight.setFlightData("")
                         // 显示loading
-                        $(".statistic_section").showProgress('服务器异常,正在重新加载');
+                        $(".content").showProgress('服务器异常,正在重新加载');
                         console.warn('The flow data is empty');
                     }
                 } else {
@@ -455,7 +457,7 @@ var CommonData = function () {
                     // 清空航班监控数据
                     Flight.setFlightData("")
                     // 显示loading
-                    $(".statistic_section").showProgress('服务器异常,正在重新加载');
+                    $(".content").showProgress('服务器异常,正在重新加载');
                     console.error('retrieve flow data failed');
                 }
 
@@ -472,7 +474,7 @@ var CommonData = function () {
                 // 清空航班监控数据
                 Flight.setFlightData("")
                 // 显示loading
-                $(".statistic_section").showProgress('服务器异常,正在重新加载');
+                $(".content").showProgress('服务器异常,正在重新加载');
 
                 //定时刷新
                 if (refresh) {
@@ -1399,7 +1401,7 @@ var CommonData = function () {
             //获取基础数据
             initBasicData(true);
             // 初始化loading组件
-            $(".statistic_section").progressDialog();
+            $(".container").progressDialog();
         },
         flightTableConfig: flightTableConfig,
         flowTableConfig: flowTableConfig,

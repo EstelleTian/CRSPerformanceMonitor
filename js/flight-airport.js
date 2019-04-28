@@ -56,6 +56,30 @@ var Flight = function () {
       current_hour_estimate_release: 'currentHourEstimateRelease', // 当前一小时预计放行航班
       next_hour_estimate_release: 'nextHourEstimateRelease' // 下一小时预计放行航班
   }
+  var tooltipData = {
+      // 已放行总量
+      already_release_in: '受流控影响航班（系统负责分配时隙）已起飞总量',
+      // 豁免航班
+      flights_exempt: '优先级调整为豁免的航班总量',
+      // 入池航班
+      flights_pool_in: '受控航班入池航班总量',
+      // 人工干预航班
+      manual_intervention: '人工进行过时隙相关时间调整的航班',
+      // 关门等待航班
+      flights_close_wait: '本地区放行舱门关闭但未起飞航班',
+      // 飞越航班（已出区域量，未出区域量）
+      already_release: '受流控影响飞越航班总量',
+      // 地面延误航班
+      flights_delay_no_fly: '受控航班未起飞且已延误（延误标准）',
+      // 待放行总量
+      wait_release_area_in: '受流控影响航班（系统负责分配时隙）未起飞总量',
+      // 上一小时实际放行航班
+      before_hour_actual_release: '当前时间上一小时范围内本区域受控航班已起飞总量',
+      // 当前一小时预计放行航班
+      current_hour_estimate_release: '当前时间一小时范围内本区域受控航班预计起飞总量',
+      // 下一小时预计放行航班
+      next_hour_estimate_release: '当前时间下一小时范围本区域受控航班预计起飞总量'
+  };
   /**
    * 航班监控数据转换
    * @param data
@@ -274,11 +298,11 @@ var Flight = function () {
    * 初始化机场点击事件
    */
   var initAirportClick = function () {
-    var lateData = groundLate.result;
+    var lateData = groundLate.result.airportsMonitor.result;
     if($.isValidObject(lateData)){
       $.each(lateData, function (i, e) {
         $(".flights_floor_delay" + e.airport).click(function () {
-          lateData  = groundLate.result;
+          lateData  = groundLate.result.airportsMonitor.result;
           var groundLateArr = [];
           $.each((lateData[this.id]).floorDelay, function (j, e) {
             groundLateArr.push(airportAllData[e]);
@@ -307,7 +331,7 @@ var Flight = function () {
           )
           $('.runway_dcb' + e.airport).on('click', function () {
             $(this).popover('show').on('shown.bs.popover', function () {
-              lateData = groundLate.result;
+              lateData = groundLate.result.airportsMonitor.result;
               $('.' + e.airport + 'container').html(runWayDcbConfig(lateData[i].runwayDcb));
               var thisProxy = $(this)
               currnetDCBClick(e.airport,thisProxy)
@@ -322,7 +346,7 @@ var Flight = function () {
                   var apName = $(this).attr('apName');
                   $.ajax({
                     type: "GET",
-                    url: ipHost + "crs_system/runway_dcb_history_detail?userId=" + userId + "&onlyValue=" + onlyValue + '&apName=' + apName,
+                    url: ipHost + "crs_system/runway_dcb_history_detail?userId=" + userId  + '&apName=' + apName,
                     dataType: "json",
                     success: function (data) {
                       if (data.status == 200) {
@@ -414,6 +438,36 @@ var Flight = function () {
     })
 
   }
+
+
+  /**
+   *
+   *更新机场数据
+   * */
+  var fireAirportDataChange = function (data) {
+
+
+      if (groundLate == null) {
+          groundLate = data;
+          airportAllData = data.result.flights;
+          generateTime = data.generateTime;
+          // 隐藏loading
+          if ($.isValidObject(groundLate)) {
+              initAirDom($(".airport_wrap"), groundLate);
+              initAirportClick();
+          } else {
+              console.warn('The airport data is empty')
+              $(".airport_init").showProgress('服务器异常,正在重新加载');
+          }
+
+      } else {
+          groundLate = data;
+          airportAllData = data.result.flights;
+          generateTime = data.generateTime;
+          airportBarDataRefresh(data);
+          refresAirportData(data);
+      }
+  }
   /**
    * 初始化机场数据
    * @param refresh
@@ -421,7 +475,7 @@ var Flight = function () {
   var initAirportData = function (refresh) {
     $.ajax({
       type: "GET",
-      url: ipHost + "crs_system/airports_monitor?userId=" + userId + "&onlyValue=" + onlyValue,
+      url: ipHost + "crs_system/airports_monitor?userId=" + userId ,
       dataType: "json",
       success: function (data) {
         if (data.status == 200) {
@@ -480,9 +534,9 @@ var Flight = function () {
    * data机场数据
    * */
   var initAirDom = function (fatherDom, data) {
-    var dataObj = data.result;
+    var dataObj = data.result.airportsMonitor.result;
     if ($.isValidObject(dataObj)) {
-      var flightData = data.flights;
+      var flightData = data.result.flights;
       var generateTime = data.generateTime;
       var len = dataObj.length;
       for (var i = 0; i < len; i++) {
@@ -603,7 +657,7 @@ var Flight = function () {
    */
   var airportBarDataRefresh = function (data) {
     var len = charDataArr.charts.length;
-    var dataObj = data.result
+    var dataObj = data.result.airportsMonitor.result;
     for (var i = 0; i < len; i++) {
       airportDataConvert(dataObj[i], data.flights);
       var optobj = dataConvert(dataObj[i]);
@@ -616,7 +670,7 @@ var Flight = function () {
    * @param data
    */
   var refresAirportData = function (data) {
-    var dataObj = data.result;
+    var dataObj = data.result.airportsMonitor.result;
     var len = $(".airport_name").length;
     var airportDataTime = data.generateTime;
     $(".airport_data_time").text("数据生成时间：" + CovertTime(airportDataTime));
@@ -876,7 +930,7 @@ var Flight = function () {
    * 隐藏跑道dcb气泡
    */
   var hideDcbPopover = function () {
-    $.each(groundLate.result,function (i,e) {
+    $.each(groundLate.result.airportsMonitor.result,function (i,e) {
       $('.runway_dcb' + e.airport).popover('hide')
     })
   }
@@ -1029,9 +1083,9 @@ var Flight = function () {
   var allHistoryDcbFlight = function (apName, historyTime, runWay) {
     var searchUrl = '';
     if ($.isValidVariable(runWay)) {
-      searchUrl = ipHost + "crs_system/runway_dcb_demand_detail?userId=" + userId + "&onlyValue=" + onlyValue + '&apName=' + apName + '&runway=' + runWay + '&time=' + historyTime
+      searchUrl = ipHost + "crs_system/runway_dcb_demand_detail?userId=" + userId  + '&apName=' + apName + '&runway=' + runWay + '&time=' + historyTime
     } else {
-      searchUrl = ipHost + "crs_system/runway_dcb_demand_detail?userId=" + userId + "&onlyValue=" + onlyValue + '&apName=' + apName + '&runway=&time=' + historyTime
+      searchUrl = ipHost + "crs_system/runway_dcb_demand_detail?userId=" + userId  + '&apName=' + apName + '&runway=&time=' + historyTime
     }
     $.ajax({
       type: "GET",
@@ -1533,15 +1587,33 @@ var Flight = function () {
     var str = year + '-' + mon + '-' + date + ' ' + hour + ":" + min;
     return str;
   };
+
+
+  var initTooltip = function () {
+      //
+      for (var i in tooltipData){
+          var opt = {
+              placement: 'auto',
+              container: '.monitor',
+              title: tooltipData[i],
+          };
+          $('.c_'+ i).tooltip(opt);
+      }
+
+  };
   return {
     init: function () {
-      $(".airport_init").progressDialog();
+      // $(".airport_init").progressDialog();
       // $(".airport_init").showProgress('');
-      initAirportData(true);
+      // initAirportData(true);
       userLogOut();
+      // 初始化tooltip
+      initTooltip();
     },
     // resultData : resultData,
+
     flightMonitorData: flightMonitorData,
+    fireAirportDataChange: fireAirportDataChange,
     flightMonitorDataConvert: flightMonitorDataConvert,
     initFlightDataClick: initFlightDataClick,
     setFlightData: setFlightData,

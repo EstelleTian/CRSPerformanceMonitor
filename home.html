@@ -42,7 +42,7 @@
         <!--</p>-->
     <!--</div>-->
     <div class="container">
-        <div class="row">
+        <div class="row content">
             <div class="col-md-7 left statistic_section">
                 <!--流控统计-->
                 <div class="col-md-12 flow_caculate">
@@ -79,26 +79,26 @@
                             <div class="col-md-6">
                                 <div class="monitor_item">
                                     <ul class="monitor_items">
-                                        <li class="item">
+                                        <li class="item c_already_release_in">
                                             <div class="num">
                                                 <p class="num_item_single already_release_in"></p>
                                             </div>
                                             <p class="num_name ">已放行总量</p>
                                         </li>
-                                        <li class="item">
+                                        <li class="item c_wait_release_area_in">
                                             <div class="num">
                                                 <p class="num_item_single wait_release_area_in"></p>
                                             </div>
                                             <p class="num_name fcs">待放行总量</p>
                                         </li>
-                                        <li class="item">
+                                        <li class="item c_already_release">
                                             <div class="num">
-                                                <p class="num_item ">
+                                                <p class="num_item c_already_release_out">
                                                     <a  class="already_release_out"></a>
                                                     <span class="mark_left">已出区域量</span>
                                                 </p>
                                                 <span class="line"></span>
-                                                <p class="num_item">
+                                                <p class="num_item c_wait_release_area_out">
                                                     <a  class="wait_release_area_out"></a>
                                                     <span class="mark_right">未出区域量</span>
                                                 </p>
@@ -106,20 +106,20 @@
                                             <p class="num_name fly_over">飞越航班</p>
                                         </li>
 
-                                        <li class="item bb0">
+                                        <li class="item bb0 c_flights_exempt">
                                             <div class="num">
                                                 <p class="num_item_single flights_exempt"></p>
                                             </div>
                                             <p class="num_name ">豁免航班</p>
                                         </li>
 
-                                        <li class="item bb0">
+                                        <li class="item bb0 c_manual_intervention">
                                             <div class="num">
                                                 <p class="num_item_single manual_intervention"></p>
                                             </div>
                                             <p class="num_name ">人工干预航班</p>
                                         </li>
-                                        <li class="item bb0">
+                                        <li class="item bb0 c_flights_pool_in">
                                             <div class="num">
                                                 <p class="num_item_single flights_pool_in"></p>
                                             </div>
@@ -134,13 +134,13 @@
                             <div class="col-md-6">
                                 <div class="monitor_item">
                                     <ul class="monitor_items">
-                                        <li class="item">
+                                        <li class="item c_flights_delay_no_fly">
                                             <div class="num">
                                                 <p class="num_item_single flights_delay_no_fly"></p>
                                             </div>
                                             <p class="num_name ">地面延误航班</p>
                                         </li>
-                                        <li class="item ">
+                                        <li class="item c_flights_close_wait">
                                             <div class="num">
                                                 <p class="num_item_single flights_close_wait"></p>
                                             </div>
@@ -153,19 +153,19 @@
                                             <p class="num_name "></p>
                                         </li>
 
-                                        <li class="item bb0">
+                                        <li class="item bb0 c_before_hour_actual_release">
                                             <div class="num">
                                                 <p class="num_item_single before_hour_actual_release"></p>
                                             </div>
                                             <p class="num_name ">上一小时实际放行</p>
                                         </li>
-                                        <li class="item bb0">
+                                        <li class="item bb0 c_current_hour_estimate_release">
                                             <div class="num">
                                                 <p class="num_item_single current_hour_estimate_release"></p>
                                             </div>
                                             <p class="num_name ">当前一小时预计放行</p>
                                         </li>
-                                        <li class="item bb0">
+                                        <li class="item bb0 c_next_hour_estimate_release">
                                             <div class="num">
                                                 <p class="num_item_single next_hour_estimate_release"></p>
                                             </div>
@@ -213,7 +213,7 @@
                     <div class="box">
                         <h2>机场 <span class="airport_data_time"></span></h2>
                         <div class="airport_wrap">
-                            <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+                            <!--<div class="lds-ring"><div></div><div></div><div></div><div></div></div>-->
                         </div>
                     </div>
                 </div>
