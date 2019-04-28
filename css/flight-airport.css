@@ -66,7 +66,7 @@ body .container .left .monitor .box .monitor_wrap .col-md-6 .monitor_item .monit
   display: grid;
   position: relative;
   margin: 2% 1%;
-  grid-template-columns: 25% 25% 25% 25%;
+  grid-template-columns: 33.33% 33.33% 33.33%;
   grid-template-rows: 48% 48%;
   list-style: none;
   padding-left: 0;
@@ -151,8 +151,8 @@ html .container .left .monitor .box .monitor_wrap .col-md-6 .monitor_item .monit
 body .container .left .monitor .box .monitor_wrap .col-md-6 .monitor_item .monitor_items li:nth-of-type(1) {
   margin-left: 2%;
 }
-html .container .left .monitor .box .monitor_wrap .col-md-6 .monitor_item .monitor_items li:nth-of-type(4n),
-body .container .left .monitor .box .monitor_wrap .col-md-6 .monitor_item .monitor_items li:nth-of-type(4n) {
+html .container .left .monitor .box .monitor_wrap .col-md-6 .monitor_item .monitor_items li:nth-of-type(3n),
+body .container .left .monitor .box .monitor_wrap .col-md-6 .monitor_item .monitor_items li:nth-of-type(3n) {
   border-right: 0;
 }
 html .container .left .monitor .box .monitor_wrap .col-md-6 .monitor_item .monitor_items .bb0,
@@ -166,7 +166,7 @@ body .container .left .monitor .box .monitor_wrap .col-md-6 .monitor_item .monit
   width: 5%;
   height: 14%;
   border-radius: 50%;
-  left: 22%;
+  left: 30.5%;
   top: 40%;
 }
 html .container .left .monitor .box .monitor_wrap .col-md-6 .monitor_item .monitor_items .circle1,
@@ -176,7 +176,7 @@ body .container .left .monitor .box .monitor_wrap .col-md-6 .monitor_item .monit
   width: 5%;
   height: 14%;
   border-radius: 50%;
-  left: 47%;
+  left: 64%;
   top: 40%;
 }
 html .container .left .monitor .box .monitor_wrap .col-md-6 .monitor_item .monitor_items .circle2,
