@@ -12,7 +12,7 @@ var CommonData = function () {
     var  user_property = JSON.parse(localStorage.getItem('userProperty'))
 
     // 数据请求地址  showNums:显示流控排名数量 flag:是否获取参与流控统计计算的航班数据
-    var dataStatisticURL = ipHost + 'crs_system/data_statistic?userId=' + userId + "&onlyValue=" + onlyValue + '&showNums=' + 10 + '&flag=true';
+    var dataStatisticURL = ipHost + 'crs_system/data_statistic?userId=' + userId + '&flag=true' +'&showNums=10' ;
 
     /**
      * 流控表格配置
@@ -414,7 +414,6 @@ var CommonData = function () {
                         // 隐藏loading
                         $(".statistic_section").hideProgress();
 
-                        /***流控****/
                         //全部数据
                         FlowStatistic.allData = data.result;
                         //流控数据
@@ -432,8 +431,6 @@ var CommonData = function () {
                         FlowStatistic.convertData();
                         // 更新流控统计数据显示
                         FlowStatistic.fireDataChange();
-                        /***航班**/
-                        // Flight.resultData = data.result;
 
                         if (Flight.flightMonitorData == null) {
                             Flight.flightMonitorDataConvert(data.result);

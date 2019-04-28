@@ -6,6 +6,9 @@ var FlowStatistic = function () {
     var allData = {};
     // 流控数据对象
     var flowData = {};
+    // 可用状态集合
+    var availableStatus = null;
+
     
     //流控集合
     
@@ -224,6 +227,7 @@ var FlowStatistic = function () {
         chartObj.status.getOption();
         chartObj.status.fireData();
 
+
         //原因
         chartObj.reason.getOption();
         chartObj.reason.fireData();
@@ -232,6 +236,36 @@ var FlowStatistic = function () {
         chartObj.statistic24Hour.fireData();
         //流控排行表
         fireRankingsDataChange();
+    };
+
+    /**
+     * 重新绘制方向和原因图表数据
+     *
+     * */
+    var refireDataChange = function (param) {
+        // 状态图表的图列
+        var legend = param.selected;
+        // 选中的图列项
+        var available = [];
+        for(var k in legend){
+            if(legend[k]){
+                available.push(k);
+            }
+        }
+        // 更新到全局
+        availableStatus = available;
+        /** 重新设置方向和原因图表数据**/
+        // 方向
+        convertDirections();
+        // 原因
+        convertReason();
+        //方向
+        chartObj.direction.getOption();
+        chartObj.direction.fireData();
+        //原因
+        chartObj.reason.getOption();
+        chartObj.reason.fireData();
+
     };
 
     /**
@@ -249,7 +283,9 @@ var FlowStatistic = function () {
             // 按指定排序依据遍历
             sortKey.direction.map(function (item, index) {
                 // 获取对应流控数据
-                var data = obj[item];
+                var itemObj = obj[item];
+                // 按选定的状态过滤流控数据
+                var data =  filterFlowByAvailableStatus(itemObj);
                 if($.isValidVariable(data)){
                     // 设置数据结构中方向字段相关数值
                     dataStructure.direction.legend.push(item);
@@ -315,7 +351,10 @@ var FlowStatistic = function () {
         if($.isValidObject(FlowStatistic.allData.reasons)){
             var obj = FlowStatistic.allData.reasons;
             sortKey.reason.map(function (item, index, arr) {
-                var data = obj[item];
+                // 获取对应流控数据
+                var itemObj = obj[item];
+                // 按选定的状态过滤流控数据
+                var data =  filterFlowByAvailableStatus(itemObj);
                 if($.isValidVariable(data)){
                     dataStructure.reason.legend.push(item);
                     dataStructure.reason.legendZh.push(data.reasonZh);
@@ -394,6 +433,9 @@ var FlowStatistic = function () {
         // 状态
         if($.isValidObject(FlowStatistic.allData.statuss)){
             sortKey.status = sortRule(FlowStatistic.allData.statuss);
+            if(!availableStatus){
+                availableStatus=  sortKey.status
+            }
         }
 
         // 原因
@@ -453,6 +495,9 @@ var FlowStatistic = function () {
             radius : ['55%', '85%']
         });
         chartObj.status.initChart();
+        chartObj.status.chartsObj.on('legendselectchanged', function (params) {
+            refireDataChange(params);
+        });
          //原因
         chartObj.reason = new PieCharts({
             seriesName : 'reason',
@@ -705,6 +750,35 @@ var FlowStatistic = function () {
         };
         return className;
     };
+
+    /**
+     * 按选定的状态过滤流控数据
+     *
+     * */
+    var filterFlowByAvailableStatus = function (data) {
+        if(!$.isValidObject(data.flows)){
+            return data;
+        }
+        //复制原数据
+        var result = JSON.parse(JSON.stringify(data));
+        // 重置flows 和 num
+        result.num = 0;
+        result.flows = [];
+        availableStatus.map(function (item, index, p3) {
+           var len = data.flows.length;
+           for(var i =0; i< len; i++){
+               var id = data.flows[i];
+               var flowControl = FlowStatistic.flowData[id];
+               if(flowControl.status == item){
+                   result.num = result.flows.push(id);
+               }
+           }
+
+        });
+
+        return result
+    };
+
 
     return {
         init : function () {
