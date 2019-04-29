@@ -13,6 +13,7 @@ function PieCharts(params){
     this.chartsObj = {};
     this.option = {};
     this.data = {};
+    this.selectedLegend = null;
 }
 
 PieCharts.prototype.initChart = function () {
@@ -29,7 +30,7 @@ PieCharts.prototype.initChart = function () {
         zlevel: 0
     }
     thisProxy.chartsObj.showLoading('default',opt);
-    //事件绑定
+    //事件点击绑定
     thisProxy.chartsObj.on('click',function (params) {
         var index = thisProxy.data.legend.indexOf(params.name);
         if(index == -1){
@@ -47,10 +48,22 @@ PieCharts.prototype.initChart = function () {
         };
         CommonData.createDhxWindow(opt);
     });
+    // 绑定图例选择事件
+    thisProxy.chartsObj.on('legendselectchanged', function (params) {
+        // 更新选中的legend项
+        thisProxy.getSelectedLegend(params);
+        // 获取配置
+        thisProxy.getOption();
+        // 绘制图表数据
+        thisProxy.fireData();
+    });
+
     //绑定自适应大小
     $(window).resize(function () {
         thisProxy.chartsObj.resize();
-    })
+    });
+
+
 };
 
 PieCharts.prototype.getOption = function () {
@@ -144,8 +157,20 @@ PieCharts.prototype.getOption = function () {
                     value: function(){
                         var seriesData = thisProxy.data.seriesData;
                         var total = 0;
+                        // 遍历seriesData数据求和
                         for(var i in seriesData){
-                            total += seriesData[i].value*1;
+                            // 若选中的legend集合有效
+                            if(thisProxy.selectedLegend){
+                                var selectedLegend = thisProxy.selectedLegend;
+                                var name = seriesData[i].name;
+                                // 过滤选中的legend项，只对其值为true的进行求和
+                                if(selectedLegend[name] == true){
+                                    total += seriesData[i].value*1;
+                                }
+                            } else {
+
+                                total += seriesData[i].value*1;
+                            }
                         }
                         return total;
                     },
@@ -194,6 +219,18 @@ PieCharts.prototype.clear = function () {
     thisProxy.chartsObj.hideLoading();
     thisProxy.chartsObj.clear();
 };
+/**
+ * 更新选中的legend项
+ *
+ * */
+PieCharts.prototype.getSelectedLegend = function (params) {
+    var thisProxy = this;
+    var selected = params.selected;
+    thisProxy.selectedLegend = selected;
+
+};
+
+
 
 /***********************柱状图*******************************/
 
