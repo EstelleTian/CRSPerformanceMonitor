@@ -171,7 +171,6 @@ var FlowStatistic = function () {
                 // 状态列
                 if(colName == 'statusZH'){
                     var className = setFlowcontrolStatusCellClassName(rowObject);
-                    console.log(rowObject)
                     attrs = 'class="'+ className +'"';
                 }
 
@@ -648,7 +647,7 @@ var FlowStatistic = function () {
                         // 弹出DCB计算历史记录页面
                         CommonData.createDhxWindow(opt);
                     }
-                    console.log(rowid, iCol, cellcontent );
+                    // console.log(rowid, iCol, cellcontent );
 
                 }
             }

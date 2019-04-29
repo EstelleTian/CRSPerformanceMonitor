@@ -62,8 +62,8 @@ var LOGIN = function () {
                            localStorage.setItem("userName",userName);
                            localStorage.removeItem("userId","");
                            localStorage.setItem("userId",data.user.id);
-                           localStorage.removeItem("onlyValue","");
-                           localStorage.setItem("onlyValue",data.user.onlyValue);
+                           // localStorage.removeItem("onlyValue","");
+                           // localStorage.setItem("onlyValue",data.user.onlyValue);
                            localStorage.removeItem("userProperty","");
                            var userPropertys = data.userPropertys
                            localStorage.setItem("userProperty",JSON.stringify(userPropertys));
