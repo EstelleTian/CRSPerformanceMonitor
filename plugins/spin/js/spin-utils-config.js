@@ -49,8 +49,8 @@
             this.$container.append( str );
         },
         //适配容器，居中显示
-        _posCenter : function(){
-            var conDom = $(".progress_container");
+        _posCenter : function($mask){
+            var conDom = $(".progress_container",$mask);
             var width = conDom.width();
             var height = conDom.height();
             conDom.css({
@@ -59,29 +59,32 @@
             })
         },
         //展示
-        show : function(msg, $container){
-            var $mask = $(".progress_mask", $container);
+        show : function(msg, container){
+            if( container == undefined || container == null){
+                container = $("body");
+            }
+            var $mask = $(".progress_mask", container);
             var _this = this;
             msg = $.isValidVariable(msg) ? msg : "正在查询中，请稍候";
-            $(".progress_message").html(msg);
+            $(".progress_message",$mask).html(msg);
             $mask.show();
-            _this._posCenter();
-            var target = $(".progress_loading")[0];
+            _this._posCenter($mask);
+            var target = $(".progress_loading", $mask)[0];
             _this.spinnerObj.spin(target);
 
         },
         //隐藏
-        hide : function( msg, $container ){
-            $(".progress_message", $container).html(msg);
+        hide : function( msg ){
+            $(".progress_message").html(msg);
             var _this = this;
             setTimeout(function(){
                 _this.spinnerObj.spin();
-                $(".progress_mask", $container).hide();
+                $(".progress_mask").hide();
             }, 500);
         },
         //销毁
-        destory : function($container){
-            var $mask = $(".progress_mask", $container);
+        destory : function(){
+            var $mask = $(".progress_mask")
             $mask.parent().data('progressDialog', "");
             $mask.remove();
         }
@@ -112,7 +115,7 @@
         var $this = $(this);
         var data = $this.data('progressDialog');
         if( data ){
-            data.hide( msg, $this );
+            data.hide( msg );
         }
     };
 
@@ -121,7 +124,7 @@
         var $this = $(this);
         var data = $this.data('progressDialog');
         if( data ){
-            data.destory($this);
+            data.destory();
         }
     };
 
