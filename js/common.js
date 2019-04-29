@@ -12,7 +12,7 @@ var CommonData = function () {
     var  user_property = JSON.parse(localStorage.getItem('userProperty'))
 
     // 数据请求地址  showNums:显示流控排名数量 flag:是否获取参与流控统计计算的航班数据
-    var dataStatisticURL = ipHost + 'crs_system/data_statistic?userId=' + userId + '&flag=true' +'&showNums=10' ;
+    var dataStatisticURL = ipHost + 'data_statistic?userId=' + userId + '&flag=true' +'&showNums=10' ;
 
     /**
      * 流控表格配置
@@ -403,6 +403,10 @@ var CommonData = function () {
      * @param refresh 是否定时刷新　
      * */
     var initBasicData = function (refresh) {
+        // 启用遮罩loading
+        if(!$.isValidObject(FlowStatistic.allData)){
+            $(".content").showProgress('数据加载中...');
+        }
         //统计数据
         $.ajax({
             url: dataStatisticURL,
@@ -412,8 +416,7 @@ var CommonData = function () {
                 if ($.isValidObject(data)) {
                     if ($.isValidObject(data.result)) {
                         // 隐藏loading
-                        $(".statistic_section").hideProgress();
-
+                        $(".content").hideProgress();
                         //全部数据
                         FlowStatistic.allData = data.result;
                         //流控数据
@@ -448,7 +451,7 @@ var CommonData = function () {
                         // 清空航班监控数据
                         Flight.setFlightData("")
                         // 显示loading
-                        $(".content").showProgress('服务器异常,正在重新加载');
+                        $(".content").showProgress('数据加载中...');
                         console.warn('The flow data is empty');
                     }
                 } else {
@@ -457,7 +460,7 @@ var CommonData = function () {
                     // 清空航班监控数据
                     Flight.setFlightData("")
                     // 显示loading
-                    $(".content").showProgress('服务器异常,正在重新加载');
+                    $(".content").showProgress('数据加载中...');
                     console.error('retrieve flow data failed');
                 }
 
@@ -470,11 +473,13 @@ var CommonData = function () {
                 console.error('retrieve statistic data failed, state:');
                 console.error(status);
                 // 清空统计图表和流控排名表格
-                FlowStatistic.clear();
+                if($.isValidObject(FlowStatistic.clear)){
+                    FlowStatistic.clear();
+                }
                 // 清空航班监控数据
                 Flight.setFlightData("")
                 // 显示loading
-                $(".content").showProgress('服务器异常,正在重新加载');
+                $(".content").showProgress('数据加载中...');
 
                 //定时刷新
                 if (refresh) {
@@ -492,7 +497,7 @@ var CommonData = function () {
      *
      * */
     var getDCBData = function (opt, table) {
-        var url = ipHost + 'crs_system/flow_id_dcb_history_detail?userId='+ userId+'&onlyValue='+ onlyValue +'&id='+opt.id;
+        var url = ipHost + 'flow_id_dcb_history_detail?userId='+ userId+'&onlyValue='+ onlyValue +'&id='+opt.id;
         //统计数据
         $.ajax({
             url: url,
@@ -522,7 +527,7 @@ var CommonData = function () {
      *
      * */
     var getDCBDemandFlightData = function (opt, table) {
-        var url = ipHost + 'crs_system/flow_dcb_demand_detail?userId='+ userId+'&onlyValue='+ onlyValue +'&id='+opt.id+'&time=' + opt.time;
+        var url = ipHost + 'flow_dcb_demand_detail?userId='+ userId+'&onlyValue='+ onlyValue +'&id='+opt.id+'&time=' + opt.time;
         //统计数据
         $.ajax({
             url: url,
@@ -709,7 +714,7 @@ var CommonData = function () {
      *  获取流控详情数据
      * */
     var getFlowById = function (id, dialogId) {
-        var url = ipHost+ 'crs_system/flow_id_detail?userId=' + userId + '&onlyValue=' + onlyValue + '&id=' + id;
+        var url = ipHost+ 'flow_id_detail?userId=' + userId + '&onlyValue=' + onlyValue + '&id=' + id;
         $.ajax({
             url: url,
             type: 'GET',
@@ -1398,10 +1403,10 @@ var CommonData = function () {
 
     return {
         init: function () {
+            // 初始化loading组件
+            $(".content").progressDialog();
             //获取基础数据
             initBasicData(true);
-            // 初始化loading组件
-            $(".container").progressDialog();
         },
         flightTableConfig: flightTableConfig,
         flowTableConfig: flowTableConfig,

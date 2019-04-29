@@ -48,7 +48,7 @@ var LOGIN = function () {
         if(isValidLogonInfo()){
             $.ajax({
                 type: "POST",
-                url: ipHost + "crs_system/userLogon/",
+                url: ipHost + "userLogon/",
                 data:{
                     username:userName,
                     password:passWord

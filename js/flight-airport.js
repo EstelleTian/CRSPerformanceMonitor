@@ -346,7 +346,7 @@ var Flight = function () {
                   var apName = $(this).attr('apName');
                   $.ajax({
                     type: "GET",
-                    url: ipHost + "crs_system/runway_dcb_history_detail?userId=" + userId  + '&apName=' + apName,
+                    url: ipHost + "runway_dcb_history_detail?userId=" + userId  + '&apName=' + apName,
                     dataType: "json",
                     success: function (data) {
                       if (data.status == 200) {
@@ -367,13 +367,11 @@ var Flight = function () {
                       } else {
                         loading.stop();
                         clearAirportData()
-                        $(".airport_init").showProgress('服务器异常,正在重新加载');
                       }
                     },
                     error: function (xhr, status) {
                       loading.stop();
                       clearAirportData()
-                      $(".airport_init").showProgress('服务器异常,正在重新加载');
                       if (refresh) {
                         startTimer(initAirportData, airportAllData, true, 30 * 1000);
                       }
@@ -455,9 +453,6 @@ var Flight = function () {
           if ($.isValidObject(groundLate)) {
               initAirDom($(".airport_wrap"), groundLate);
               initAirportClick();
-          } else {
-              console.warn('The airport data is empty')
-              $(".airport_init").showProgress('服务器异常,正在重新加载');
           }
 
       } else {
@@ -475,7 +470,7 @@ var Flight = function () {
   var initAirportData = function (refresh) {
     $.ajax({
       type: "GET",
-      url: ipHost + "crs_system/airports_monitor?userId=" + userId ,
+      url: ipHost + "airports_monitor?userId=" + userId ,
       dataType: "json",
       success: function (data) {
         if (data.status == 200) {
@@ -491,7 +486,6 @@ var Flight = function () {
                 initAirportClick();
               } else {
                 console.warn('The airport data is empty')
-                $(".airport_init").showProgress('服务器异常,正在重新加载');
               }
 
             } else {
@@ -511,7 +505,6 @@ var Flight = function () {
           window.location = "index.html";
         } else {
           clearAirportData()
-          $(".airport_init").showProgress('服务器异常,正在重新加载');
         }
         //定时刷新
         if (refresh) {
@@ -520,7 +513,6 @@ var Flight = function () {
       },
       error: function (xhr, status) {
         clearAirportData()
-        $(".airport_init").showProgress('服务器异常,正在重新加载');
         if (refresh) {
           startTimer(initAirportData, airportAllData, true, 30 * 1000);
         }
@@ -701,7 +693,7 @@ var Flight = function () {
         //       var apName = $(this).attr('apName');
         //       $.ajax({
         //         type: "GET",
-        //         url: ipHost + "crs_system/runway_dcb_history_detail?userId="+userId+"&onlyValue="+onlyValue+'&apName='+apName,
+        //         url: ipHost + "runway_dcb_history_detail?userId="+userId+"&onlyValue="+onlyValue+'&apName='+apName,
         //         dataType: "json",
         //         success: function (data) {
         //           if(data.status == 200){
@@ -1083,9 +1075,9 @@ var Flight = function () {
   var allHistoryDcbFlight = function (apName, historyTime, runWay) {
     var searchUrl = '';
     if ($.isValidVariable(runWay)) {
-      searchUrl = ipHost + "crs_system/runway_dcb_demand_detail?userId=" + userId  + '&apName=' + apName + '&runway=' + runWay + '&time=' + historyTime
+      searchUrl = ipHost + "runway_dcb_demand_detail?userId=" + userId  + '&apName=' + apName + '&runway=' + runWay + '&time=' + historyTime
     } else {
-      searchUrl = ipHost + "crs_system/runway_dcb_demand_detail?userId=" + userId  + '&apName=' + apName + '&runway=&time=' + historyTime
+      searchUrl = ipHost + "runway_dcb_demand_detail?userId=" + userId  + '&apName=' + apName + '&runway=&time=' + historyTime
     }
     $.ajax({
       type: "GET",
@@ -1112,7 +1104,6 @@ var Flight = function () {
       },
       error: function (xhr, status) {
         clearAirportData()
-        $(".airport_init").showProgress('服务器异常,正在重新加载');
         if (refresh) {
           startTimer(initAirportData, airportAllData, true, 30 * 1000);
         }
@@ -1516,7 +1507,7 @@ var Flight = function () {
       var userId = localStorage.getItem("userId");
       $.ajax({
         type: "POST",
-        url: ipHost + "crs_system/userLogout",
+        url: ipHost + "userLogout",
         data: {
           userId: userId,
           onlyValue: onlyValue
