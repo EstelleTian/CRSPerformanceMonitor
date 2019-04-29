@@ -15,7 +15,7 @@ var Flight = function () {
   //用户ID
   var userId = localStorage.getItem("userId");
   //登录唯一值
-  var onlyValue = localStorage.getItem("onlyValue");
+  // var onlyValue = localStorage.getItem("onlyValue");
   //用户名
   var userName = localStorage.getItem("userName");
   //表格配置
@@ -1510,7 +1510,7 @@ var Flight = function () {
         url: ipHost + "userLogout",
         data: {
           userId: userId,
-          onlyValue: onlyValue
+          // onlyValue: onlyValue
         },
         success: function (data) {
           if ($.isValidObject(data)) {

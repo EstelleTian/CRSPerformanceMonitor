@@ -1547,10 +1547,9 @@ var FlightCoordinationDetailAndOperation = function () {
 
     if($.isValidVariable(formerId)){
       var userId = localStorage.getItem("userId");
-      var onlyValue = localStorage.getItem("onlyValue");
-      if($.isValidVariable(userId)&&$.isValidVariable(onlyValue)){
+      if($.isValidVariable(userId)){
         $.ajax({
-          url: ipHost + "crs_system/flight?userId="+userId+"&onlyValue="+onlyValue+" &id="+formerId,
+          url: ipHost + "flight?userId="+userId+"&id="+formerId,
           type: 'GET',
           dataType: 'json',
           success: function (data, status, xhr) {

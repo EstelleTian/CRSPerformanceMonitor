@@ -6,7 +6,7 @@ var CommonData = function () {
     //用户ID
     var userId = localStorage.getItem("userId");
     //登录唯一值
-    var onlyValue = localStorage.getItem("onlyValue");
+    // var onlyValue = localStorage.getItem("onlyValue");
 
     //
     var  user_property = JSON.parse(localStorage.getItem('userProperty'))
@@ -149,7 +149,7 @@ var CommonData = function () {
                 // 状态列
                 if(colName == 'statusZH'){
                     var className = setFlowcontrolStatusCellClassName(rowObject);
-                    console.log(rowObject)
+                    // console.log(rowObject)
                     attrs = 'class="'+ className +'"';
                 }
                 attrs += ' title="' + title + '"';
@@ -497,7 +497,7 @@ var CommonData = function () {
      *
      * */
     var getDCBData = function (opt, table) {
-        var url = ipHost + 'flow_id_dcb_history_detail?userId='+ userId+'&onlyValue='+ onlyValue +'&id='+opt.id;
+        var url = ipHost + 'flow_id_dcb_history_detail?userId='+ userId +'&id='+opt.id;
         //统计数据
         $.ajax({
             url: url,
@@ -527,7 +527,7 @@ var CommonData = function () {
      *
      * */
     var getDCBDemandFlightData = function (opt, table) {
-        var url = ipHost + 'flow_dcb_demand_detail?userId='+ userId+'&onlyValue='+ onlyValue +'&id='+opt.id+'&time=' + opt.time;
+        var url = ipHost + 'flow_dcb_demand_detail?userId='+ userId +'&id='+opt.id+'&time=' + opt.time;
         //统计数据
         $.ajax({
             url: url,
@@ -714,7 +714,7 @@ var CommonData = function () {
      *  获取流控详情数据
      * */
     var getFlowById = function (id, dialogId) {
-        var url = ipHost+ 'flow_id_detail?userId=' + userId + '&onlyValue=' + onlyValue + '&id=' + id;
+        var url = ipHost+ 'flow_id_detail?userId=' + userId + '&id=' + id;
         $.ajax({
             url: url,
             type: 'GET',
