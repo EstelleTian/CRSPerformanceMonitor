@@ -47,14 +47,15 @@ var Flight = function () {
       flights_exempt: 'flightsExempt', // 豁免航班
       flights_pool_in: 'flightsPoolIn', // 入池航班
       manual_intervention: 'manualIntervention', // 人工干预航班
-      flights_close_wait: 'flightsCloseWait', // 关门等待航班
+      flights_close_wait: 'flightsCloseWait', // 关舱门等待航班
       already_release_out: 'alreadyReleaseFlyOver', // 已出区域量（飞越）
       flights_delay_no_fly: 'flightsDelayNoFly', // 地面延误航班
       wait_release_area_in: 'waitReleaseAreaIn', // 待放行总量
       wait_release_area_out: 'waitReleaseAreaOut',  // 未出区域量（飞越）
       before_hour_actual_release: 'beforeHourActualRelease', // 上一小时实际放行航班
       current_hour_estimate_release: 'currentHourEstimateRelease', // 当前一小时预计放行航班
-      next_hour_estimate_release: 'nextHourEstimateRelease' // 下一小时预计放行航班
+      next_hour_estimate_release: 'nextHourEstimateRelease', // 下一小时预计放行航班
+      invalid_fcs:'invalidFcs', // 失效航班
   }
   var tooltipData = {
       // 已放行总量
@@ -78,7 +79,9 @@ var Flight = function () {
       // 当前一小时预计放行航班
       current_hour_estimate_release: '当前时间一小时范围内本区域受控航班预计起飞总量',
       // 下一小时预计放行航班
-      next_hour_estimate_release: '当前时间下一小时范围本区域受控航班预计起飞总量'
+      next_hour_estimate_release: '当前时间下一小时范围本区域受控航班预计起飞总量',
+      // 失效航班
+      invalid_fcs: '失效航班'
   };
   /**
    * 航班监控数据转换
@@ -96,6 +99,7 @@ var Flight = function () {
           flightsExempt: [], // 豁免航班
           flightsPoolIn: [], // 入池航班
           manualIntervention: [], // 人工干预航班
+          flightsCloseWait: [], // 关舱门等待航班
           alreadyRelease: [], // 已放行总量
           alreadyReleaseFlyOver: [], // 已出区域量（飞越）
           flightsDelayNoFly: [], // 地面延误航班
@@ -104,6 +108,7 @@ var Flight = function () {
           beforeHourActualRelease: [], // 上一小时实际放行航班
           currentHourEstimateRelease: [], // 当前一小时预计放行航班
           nextHourEstimateRelease: [], // 下一小时预计放行航班
+          invalidFcs:[], //失效航班
 
       };
     var flightTotalData = data.flights;
@@ -210,7 +215,7 @@ var Flight = function () {
       };
       initGridWindow(winObj, Flight.flightMonitorData.manualIntervention, CommonData.generateTime);
     });
-    //关门等待航班
+    //关舱门等待航班
     $(".flights_close_wait").click(function () {
       var winObj = {
         winId: "flightsCloseWait",
@@ -292,6 +297,15 @@ var Flight = function () {
         detail: "下一小时预计放行航班"
       };
       initGridWindow(winObj, Flight.flightMonitorData.nextHourEstimateRelease, CommonData.generateTime);
+    });
+    //失效航班
+    $(".invalid_fcs").click(function () {
+      var winObj = {
+        winId: "invalidFcs",
+        winHead: "航班监控",
+        detail: "失效航班"
+      };
+      initGridWindow(winObj, Flight.flightMonitorData.invalidFcs, CommonData.generateTime);
     });
   }
   /**
