@@ -748,6 +748,10 @@ var FlowStatistic = function () {
                 case 'TERMINATED':
                     className ='status status_terminated';
                     break;
+                 // 延误人工终止
+                case 'DELAY_TERMINATED':
+                    className ='status status_terminated';
+                    break;
                 // 正常结束
                 case 'FINISHED':
                     className ='status status_finished';
