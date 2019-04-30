@@ -428,6 +428,8 @@ var CommonData = function () {
                         // CommonData.generateTime = formateTime(data.generateTime) ;
                         //更新数据生成时间
                         $('.statistic_generateTime').text('数据生成时间：' + formateTime(CommonData.generateTime));
+                        // 处理状态数据
+                        FlowStatistic.handleStatusData();
                         // 统计排序规则
                         FlowStatistic.initSortRule();
                         // 转换数据

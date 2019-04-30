@@ -427,6 +427,30 @@ var FlowStatistic = function () {
         rankingsTableObj.tableDataMap = tableMap;
         rankingsTableObj.tableData = tableData;
     }
+
+    /**
+     *  处理流控数据中状态数据对象
+     * */
+
+    var handleStatusData = function () {
+        var statusData = FlowStatistic.allData.statuss;
+        //追加TERMINATED、DELAY_TERMINATED、STOP状态
+        if(!statusData['TERMINATED']){
+            FlowStatistic.allData.statuss.TERMINATED = {
+                sort: '0',
+            }
+        }
+        if(!statusData['DELAY_TERMINATED']) {
+            FlowStatistic.allData.statuss.DELAY_TERMINATED = {
+                sort: '0',
+            }
+        }
+        if(!statusData['STOP']){
+            FlowStatistic.allData.statuss.STOP = {
+                sort: '0',
+            }
+        }
+    }
     
     /***
      * 流控图表排序规则
@@ -441,16 +465,6 @@ var FlowStatistic = function () {
         // 状态
         if($.isValidObject(FlowStatistic.allData.statuss)){
             sortKey.status = sortRule(FlowStatistic.allData.statuss);
-            //追加TERMINATED、DELAY_TERMINATED、STOP状态
-            if(!sortKey.status['TERMINATED']){
-                sortKey.status.TERMINATED = {}
-            }
-            if(!sortKey.status['DELAY_TERMINATED']) {
-                sortKey.status.DELAY_TERMINATED = {}
-            }
-            if(!sortKey.status['STOP']){
-                sortKey.status.STOP = {}
-            }
             if(!availableStatus){
                 availableStatus=  sortKey.status
             }
@@ -822,6 +836,7 @@ var FlowStatistic = function () {
         allData : allData,
         flowData : flowData,
         flightData : flightData,
+        handleStatusData: handleStatusData,
         initSortRule : initSortRule,
         convertData : convertData,
         fireDataChange : fireDataChange,
