@@ -249,9 +249,10 @@ var FlowStatistic = function () {
         for(var k in legend){
             if(legend[k]){
                 available.push(k);
-                // 若是FINISHED则将TERMINATED追加到数组中，用于过滤方向和原因数据时，匹配人工终止的流控数据
+                // 若是FINISHED则将TERMINATED、STOP追加到数组中，用于过滤方向和原因数据时，匹配TERMINATED、STOP的流控数据
                 if(k == 'FINISHED'){
                     available.push('TERMINATED');
+                    available.push('STOP');
                 }
             }
         }
