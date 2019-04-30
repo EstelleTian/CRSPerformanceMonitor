@@ -249,9 +249,10 @@ var FlowStatistic = function () {
         for(var k in legend){
             if(legend[k]){
                 available.push(k);
-                // 若是FINISHED则将TERMINATED、STOP追加到数组中，用于过滤方向和原因数据时，匹配TERMINATED、STOP的流控数据
+                // 若是FINISHED则将TERMINATED、DELAY_TERMINATED、STOP追加到数组中，用于过滤方向和原因数据时，匹配TERMINATED、DELAY_TERMINATED、STOP的流控数据
                 if(k == 'FINISHED'){
                     available.push('TERMINATED');
+                    available.push('DELAY_TERMINATED');
                     available.push('STOP');
                 }
             }
@@ -318,8 +319,11 @@ var FlowStatistic = function () {
             var obj = FlowStatistic.allData.statuss;
             // 按指定排序依据遍历
             sortKey.status.map(function (item, index, arr) {
-                // 过滤掉TERMINATED
-                if(item == 'TERMINATED'){
+                // 过滤掉TERMINATED、DELAY_TERMINATED、 STOP, 因为其对应的数据(接口返回的)都合并到了FINISHED
+                if(item == 'TERMINATED' ||
+                    item == 'DELAY_TERMINATED' ||
+                    item == 'STOP'
+                ){
                     return
                 }
                 // 获取对应流控数据
@@ -437,6 +441,16 @@ var FlowStatistic = function () {
         // 状态
         if($.isValidObject(FlowStatistic.allData.statuss)){
             sortKey.status = sortRule(FlowStatistic.allData.statuss);
+            //追加TERMINATED、DELAY_TERMINATED、STOP状态
+            if(!sortKey.status['TERMINATED']){
+                sortKey.status.TERMINATED = {}
+            }
+            if(!sortKey.status['DELAY_TERMINATED']) {
+                sortKey.status.DELAY_TERMINATED = {}
+            }
+            if(!sortKey.status['STOP']){
+                sortKey.status.STOP = {}
+            }
             if(!availableStatus){
                 availableStatus=  sortKey.status
             }
