@@ -82,7 +82,7 @@ var Flight = function () {
         // 下一小时预计放行航班
         next_hour_estimate_release: '当前时间下一小时范围本区域受控航班预计起飞总量',
         // 失效航班
-        invalid_fcs: '失效航班'
+        invalid_fcs: '本地区放行标识为取消、退出时隙分配及EOBT超时航班'
     };
     /**
      * 航班监控数据转换
