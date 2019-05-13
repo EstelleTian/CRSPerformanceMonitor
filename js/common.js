@@ -408,6 +408,8 @@ var CommonData = function () {
         if($.isValidObject(user_property)){
 
             CommonData.initFlightTableParams();
+            //获取基础数据
+            initBasicData(true);
         }else {
             retrieveUserProperty();
         }
@@ -420,7 +422,10 @@ var CommonData = function () {
     var retrieveUserProperty = function () {
         var userID = '';
         // ajax
-        // 获取成功后更新到localStore、全部变更user_property、调用 CommonData.initFlightTableParams();
+        // 获取成功后更新到localStore、全部变更user_property、
+        // 调用 CommonData.initFlightTableParams();
+        //获取基础数据
+        // initBasicData(true);
 
     }
 
@@ -1436,8 +1441,7 @@ var CommonData = function () {
             $(".content").progressDialog();
             // 初始化配置
             initParams();
-            //获取基础数据
-            initBasicData(true);
+
         },
         flightTableConfig: flightTableConfig,
         flowTableConfig: flowTableConfig,
