@@ -399,6 +399,33 @@ var CommonData = function () {
         }
     };
     /**
+     * 初始化配置参数
+     * */
+    var initParams = function () {
+        // 初始化表格配置
+        CommonData.initTableParams(CommonData.flowTableConfig);
+        CommonData.initTableParams(CommonData.dcbTableConfig);
+        if($.isValidObject(user_property)){
+
+            CommonData.initFlightTableParams();
+        }else {
+            retrieveUserProperty();
+        }
+    };
+
+    /**
+     * 获取用户信息
+     *
+     * */
+    var retrieveUserProperty = function () {
+        var userID = '';
+        // ajax
+        // 获取成功后更新到localStore、全部变更user_property、调用 CommonData.initFlightTableParams();
+
+    }
+
+
+    /**
      * 初始化数据
      * @param refresh 是否定时刷新　
      * */
@@ -1407,6 +1434,8 @@ var CommonData = function () {
         init: function () {
             // 初始化loading组件
             $(".content").progressDialog();
+            // 初始化配置
+            initParams();
             //获取基础数据
             initBasicData(true);
         },
@@ -1426,10 +1455,5 @@ var CommonData = function () {
 }();
 
 $(document).ready(function () {
-    // 初始化表格配置
-    CommonData.initTableParams(CommonData.flowTableConfig);
-    CommonData.initTableParams(CommonData.dcbTableConfig);
-    CommonData.initFlightTableParams(CommonData.flowTableConfig);
-    CommonData.initFlightTableParams();
     CommonData.init();
 });
