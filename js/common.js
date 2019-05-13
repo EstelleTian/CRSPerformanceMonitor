@@ -11,9 +11,6 @@ var CommonData = function () {
     //
     var  user_property = JSON.parse(localStorage.getItem('userProperty'))
 
-    // 数据请求地址  showNums:显示流控排名数量 flag:是否获取参与流控统计计算的航班数据
-    var dataStatisticURL = ipHost + 'data_statistic?userId=' + userId + '&flag=true' +'&showNums=10' ;
-
     /**
      * 流控表格配置
      * */
@@ -420,12 +417,42 @@ var CommonData = function () {
      *
      * */
     var retrieveUserProperty = function () {
-        var userID = '';
-        // ajax
-        // 获取成功后更新到localStore、全部变更user_property、
-        // 调用 CommonData.initFlightTableParams();
-        //获取基础数据
-        // initBasicData(true);
+        var urlParma = window.location.href.split('?')[1];
+        var userkey = urlParma.split('=')[0];
+        userId = urlParma.split('=')[1];
+        if($.isValidVariable(userkey)&&$.isValidVariable(userId)){
+            var dataUrl = ipHost + 'retrieve_user_property'
+            $.ajax({
+                url: dataUrl,
+                type: 'GET',
+                dataType: 'json',
+                data:{
+                   userId:userId 
+                },
+                success: function (data, status) {
+                    if ($.isValidObject(data)&& data.status == 0) {
+                        localStorage.removeItem("userName","");
+                           localStorage.setItem("userName",data.user.username);
+                           localStorage.removeItem("userId","");
+                           localStorage.setItem("userId",userId);
+                           // localStorage.removeItem("onlyValue","");
+                           // localStorage.setItem("onlyValue",data.user.onlyValue);
+                           localStorage.removeItem("userProperty","");
+                           user_property = data.userPropertys
+                           localStorage.setItem("userProperty",JSON.stringify(user_property));
+                           CommonData.initFlightTableParams();
+                           initBasicData(true);
+
+                    } else {
+                        console.error('retrieve DCB data failed');
+                    }
+    
+                },
+                error: function (xhr, status) {
+    
+                } 
+            })
+        }
 
     }
 
@@ -439,6 +466,8 @@ var CommonData = function () {
         if(!$.isValidObject(FlowStatistic.allData)){
             $(".content").showProgress('数据加载中...');
         }
+        // 数据请求地址  showNums:显示流控排名数量 flag:是否获取参与流控统计计算的航班数据
+        var dataStatisticURL = ipHost + 'data_statistic?userId=' + userId + '&flag=true' +'&showNums=10' ;
         //统计数据
         $.ajax({
             url: dataStatisticURL,
