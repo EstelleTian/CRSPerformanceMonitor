@@ -9,7 +9,7 @@ var CommonData = function () {
     // var onlyValue = localStorage.getItem("onlyValue");
 
     //
-    var  user_property = JSON.parse(localStorage.getItem('userProperty'))
+    var user_property = JSON.parse(localStorage.getItem('userProperty'))
 
     /**
      * 流控表格配置
@@ -24,10 +24,10 @@ var CommonData = function () {
             name: {
                 en: 'name',
                 cn: '流控名称',
-                width : 180,
+                width: 180,
                 // formatter : linkFormater,
-                classes : 'link_cell',
-                frozen : true
+                classes: 'link_cell',
+                frozen: true
             }, startTime: {
                 en: 'startTime',
                 cn: '开始时间',
@@ -50,7 +50,7 @@ var CommonData = function () {
             }, value: {
                 en: 'value',
                 cn: '限制数值',
-                width : 100,
+                width: 100,
                 // formatter : flowLimitValFomater,
             }, controlPoints: {
                 en: 'controlPoints',
@@ -79,7 +79,7 @@ var CommonData = function () {
             }, publishUserZh: {
                 en: 'publishUserZh',
                 cn: '发布用户',
-                width : 100,
+                width: 100,
             }, statusZH: {
                 en: 'statusZH',
                 cn: '状态'
@@ -89,20 +89,20 @@ var CommonData = function () {
         colModel: {},
         colDisplay: {},
         colTitle: {
-            id:'ID',
-            name:'流控名称',
+            id: 'ID',
+            name: '流控名称',
             startTime: '开始时间',
             generateTime: '发布时间',
             startFlowCasaTime: '纳入计算时间',
             endTime: '结束时间',
             typeZH: '限制类型',
             value: '限制数值',
-            controlPoints:'航路点',
+            controlPoints: '航路点',
             controlDepDirection: '受控起飞机场',
             controlDirection: '受控降落机场',
-            exemptDepDirection:'豁免起飞机场',
-            exemptDirection:'豁免降落机场',
-            flowcontrolTypeZH:'流控类型',
+            exemptDepDirection: '豁免起飞机场',
+            exemptDirection: '豁免降落机场',
+            flowcontrolTypeZH: '流控类型',
             reasonZH: '限制原因',
             publishUserZh: '发布用户',
             statusZH: '状态'
@@ -144,15 +144,15 @@ var CommonData = function () {
                 }
                 var colName = colModel.name;
                 // 状态列
-                if(colName == 'statusZH'){
+                if (colName == 'statusZH') {
                     var className = setFlowcontrolStatusCellClassName(rowObject);
                     // console.log(rowObject)
-                    attrs = 'class="'+ className +'"';
+                    attrs = 'class="' + className + '"';
                 }
                 attrs += ' title="' + title + '"';
                 return attrs;
             },
-            sortfunc : function(a, b, direction) {
+            sortfunc: function (a, b, direction) {
                 // 若为升序排序，空值转换为最大的值进行比较
                 // 保证排序过程中，空值始终在最下方
                 if ($.type(a) === "number" || $.type(b) === "number") {
@@ -203,7 +203,7 @@ var CommonData = function () {
                 en: 'id',
                 cn: 'ID',
                 hidden: true,
-            },statisDateTime: {
+            }, statisDateTime: {
                 en: 'statisDateTime',
                 cn: '计算时间',
                 formatter: timeFormater
@@ -213,7 +213,7 @@ var CommonData = function () {
             }, demandValue: {
                 en: 'demandValue',
                 cn: '需求值',
-                classes : 'link_cell'
+                classes: 'link_cell'
                 // formatter : linkFormater
             }, demandIndex: {
                 en: 'demandIndex',
@@ -261,7 +261,7 @@ var CommonData = function () {
                 attrs = ' title="' + title + '"';
                 return attrs;
             },
-            sortfunc : function(a, b, direction) {
+            sortfunc: function (a, b, direction) {
                 // 若为升序排序，空值转换为最大的值进行比较
                 // 保证排序过程中，空值始终在最下方
                 if ($.type(a) === "number" || $.type(b) === "number") {
@@ -305,9 +305,8 @@ var CommonData = function () {
     /**
      * 航班表格配置
      * */
-    // var flightTableConfig = FlightGridTableConfig;
+        // var flightTableConfig = FlightGridTableConfig;
     var flightTableConfig = {};
-
 
 
     /**
@@ -334,7 +333,7 @@ var CommonData = function () {
                 obj.colModel[i]['formatter'] = val.formatter;
             }
             // 设置冻结列frozen: true,
-            if($.isValidVariable(val.frozen)){
+            if ($.isValidVariable(val.frozen)) {
                 obj.colModel[i]['frozen'] = val.frozen;
             }
 
@@ -344,7 +343,7 @@ var CommonData = function () {
                 obj.colDisplay[i].display = 0;
             }
             // 设置特殊单元格class
-            if(val.classes){
+            if (val.classes) {
                 obj.colModel[i]['classes'] = val.classes
             }
             // obj.colTitle[i] = val.cn;
@@ -358,7 +357,7 @@ var CommonData = function () {
      *
      * */
     var initFlightTableParams = function () {
-        CommonData.flightTableConfig = getGridTableStyleObj('crs_all',user_property);
+        CommonData.flightTableConfig = getGridTableStyleObj('crs_all', user_property);
     };
 
 
@@ -373,7 +372,7 @@ var CommonData = function () {
     var flowsFormater = function (cellvalue, options, rowObject) {
         if ($.isValidVariable(cellvalue)) {
             var len = cellvalue.length;
-            return len+'';  // 此处要转换成字符串格式，解决值为数字0的单元格在导出成的excel表格显示为空的问题
+            return len + '';  // 此处要转换成字符串格式，解决值为数字0的单元格在导出成的excel表格显示为空的问题
         } else {
             return '';
         }
@@ -402,12 +401,14 @@ var CommonData = function () {
         // 初始化表格配置
         CommonData.initTableParams(CommonData.flowTableConfig);
         CommonData.initTableParams(CommonData.dcbTableConfig);
-        if($.isValidObject(user_property)){
-
+        if ($.isValidObject(user_property)) {
+            //用户名
+            var userName = localStorage.getItem("userName");
+            $(".user_name .name").text(userName);
             CommonData.initFlightTableParams();
             //获取基础数据
             initBasicData(true);
-        }else {
+        } else {
             retrieveUserProperty();
         }
     };
@@ -420,37 +421,41 @@ var CommonData = function () {
         var urlParma = window.location.href.split('?')[1];
         var userkey = urlParma.split('=')[0];
         userId = urlParma.split('=')[1];
-        if($.isValidVariable(userkey)&&$.isValidVariable(userId)){
+        if ($.isValidVariable(userkey) && $.isValidVariable(userId)) {
             var dataUrl = ipHost + 'retrieve_user_property'
             $.ajax({
                 url: dataUrl,
                 type: 'GET',
                 dataType: 'json',
-                data:{
-                   userId:userId 
+                data: {
+                    userId: userId
                 },
                 success: function (data, status) {
-                    if ($.isValidObject(data)&& data.status == 0) {
-                        localStorage.removeItem("userName","");
-                           localStorage.setItem("userName",data.user.username);
-                           localStorage.removeItem("userId","");
-                           localStorage.setItem("userId",userId);
-                           // localStorage.removeItem("onlyValue","");
-                           // localStorage.setItem("onlyValue",data.user.onlyValue);
-                           localStorage.removeItem("userProperty","");
-                           user_property = data.userPropertys
-                           localStorage.setItem("userProperty",JSON.stringify(user_property));
-                           CommonData.initFlightTableParams();
-                           initBasicData(true);
+                    if ($.isValidObject(data) && data.status == 0) {
+                        localStorage.removeItem("userName", "");
+                        localStorage.setItem("userName", data.user.username);
+                        //用户名
+                        var userName = localStorage.getItem("userName");
+                        $(".user_name .name").text(userName);
+
+                        localStorage.removeItem("userId", "");
+                        localStorage.setItem("userId", userId);
+                        // localStorage.removeItem("onlyValue","");
+                        // localStorage.setItem("onlyValue",data.user.onlyValue);
+                        localStorage.removeItem("userProperty", "");
+                        user_property = data.userPropertys
+                        localStorage.setItem("userProperty", JSON.stringify(user_property));
+                        CommonData.initFlightTableParams();
+                        initBasicData(true);
 
                     } else {
                         console.error('retrieve DCB data failed');
                     }
-    
+
                 },
                 error: function (xhr, status) {
-    
-                } 
+
+                }
             })
         }
 
@@ -463,11 +468,11 @@ var CommonData = function () {
      * */
     var initBasicData = function (refresh) {
         // 启用遮罩loading
-        if(!$.isValidObject(FlowStatistic.allData)){
+        if (!$.isValidObject(FlowStatistic.allData)) {
             $(".content").showProgress('数据加载中...');
         }
         // 数据请求地址  showNums:显示流控排名数量 flag:是否获取参与流控统计计算的航班数据
-        var dataStatisticURL = ipHost + 'data_statistic?userId=' + userId + '&flag=true' +'&showNums=10' ;
+        var dataStatisticURL = ipHost + 'data_statistic?userId=' + userId + '&flag=true' + '&showNums=10';
         //统计数据
         $.ajax({
             url: dataStatisticURL,
@@ -508,7 +513,7 @@ var CommonData = function () {
                         Flight.setFlightData(Flight.flightMonitorData);
                         // 更新机场数据（右侧模块）
                         Flight.fireAirportDataChange(data);
-                    }else {
+                    } else {
                         // 清空统计图表和流控排名表格
                         FlowStatistic.clear();
                         // 清空航班监控数据
@@ -536,7 +541,7 @@ var CommonData = function () {
                 console.error('retrieve statistic data failed, state:');
                 console.error(status);
                 // 清空统计图表和流控排名表格
-                if($.isValidObject(FlowStatistic.clear)){
+                if ($.isValidObject(FlowStatistic.clear)) {
                     FlowStatistic.clear();
                 }
                 // 清空航班监控数据
@@ -560,7 +565,7 @@ var CommonData = function () {
      *
      * */
     var getDCBData = function (opt, table) {
-        var url = ipHost + 'flow_id_dcb_history_detail?userId='+ userId +'&id='+opt.id;
+        var url = ipHost + 'flow_id_dcb_history_detail?userId=' + userId + '&id=' + opt.id;
         //统计数据
         $.ajax({
             url: url,
@@ -569,8 +574,8 @@ var CommonData = function () {
             success: function (data, status) {
                 if ($.isValidObject(data)) {
                     if ($.isValidObject(data.result)) {
-                        fireDcbTableDataChange(data, table,opt)
-                    }else {
+                        fireDcbTableDataChange(data, table, opt)
+                    } else {
                         console.error('retrieve DCB data failed');
                     }
                 } else {
@@ -590,7 +595,7 @@ var CommonData = function () {
      *
      * */
     var getDCBDemandFlightData = function (opt, table) {
-        var url = ipHost + 'flow_dcb_demand_detail?userId='+ userId +'&id='+opt.id+'&time=' + opt.time;
+        var url = ipHost + 'flow_dcb_demand_detail?userId=' + userId + '&id=' + opt.id + '&time=' + opt.time;
         //统计数据
         $.ajax({
             url: url,
@@ -600,8 +605,8 @@ var CommonData = function () {
                 if ($.isValidObject(data)) {
                     if ($.isValidObject(data.result)) {
                         table.generateTime = data.generateTime;
-                        fireDCBDemandFlightTableDataChange(data, table,opt)
-                    }else {
+                        fireDCBDemandFlightTableDataChange(data, table, opt)
+                    } else {
                         console.error('retrieve DCB demand flight data failed');
                     }
                 } else {
@@ -644,7 +649,6 @@ var CommonData = function () {
     };
 
 
-
     /**
      * 创建dhx弹窗
      *
@@ -656,12 +660,12 @@ var CommonData = function () {
         var timestamp = new Date().getTime();
         var tableId = opt.id + timestamp;
         var generateTime = '';
-        if($.isValidVariable(opt.generateTime)){
+        if ($.isValidVariable(opt.generateTime)) {
             generateTime = formateTime(opt.generateTime);
         }
         opt.tableId = tableId;
         var total = '';
-        if($.isValidVariable(opt.ids)){
+        if ($.isValidVariable(opt.ids)) {
             total = opt.ids.length;
         }
         //窗口节点
@@ -696,7 +700,7 @@ var CommonData = function () {
         };
 
         //初始化dhxwindow弹框
-        var dhxWins = DhxModalDialog.create(opt.name,content,winParams);
+        var dhxWins = DhxModalDialog.create(opt.name, content, winParams);
 
         var warp = 'dhx_wrap_' + tableId;
         // 调整大小以适应所在容器
@@ -715,6 +719,7 @@ var CommonData = function () {
 
         });
     };
+
     /**
      * 流控详情页面
      * @param opt 参数
@@ -731,7 +736,7 @@ var CommonData = function () {
         //  窗口内容节点
 
         // 头部信息
-        var header = '<div class="row">' + '<div class="col-md-12">' + '<div class="header now_time">' + '<h4 class="win_head">' + opt.name + '</h4>' +'<h4> 生效时间: <span class="effective_start"></span>~<span class="effective_end"></span></h4>'+ '<h4 class="status"> ' + '</h4>' + '</div>' + '</div>' + '</div>';
+        var header = '<div class="row">' + '<div class="col-md-12">' + '<div class="header now_time">' + '<h4 class="win_head">' + opt.name + '</h4>' + '<h4> 生效时间: <span class="effective_start"></span>~<span class="effective_end"></span></h4>' + '<h4 class="status"> ' + '</h4>' + '</div>' + '</div>' + '</div>';
         // 基本信息
         var basicInformation = '<div class="row"><div class="col-md-12 "><div class="bar_title">基本信息</div></div><div class="col-md-6"><label>流控名称:</label><label class="flow_name item_value"></label></div><div class="col-md-3 source"><span class="source_cdm"><label class="icon"></label><label >CDM</label></span><span class="source_crs"><label class="icon"></label><label >CRS</label></span></div><div class="col-md-3 type"><span class="not_across"><label class="icon"></label><label >非长期</label></span><span class="across"><label class="icon"></label><label >长期</label></span></div><div class="col-md-6"><label>发布用户:</label><label class="publish_user item_value"></label></div><div class="col-md-6"><label>原发布单位:</label><label class="publish_unit item_value"></label></div></div>';
         // 限制时间
@@ -747,7 +752,7 @@ var CommonData = function () {
         // 限制原因
         var limitReason = '<div class="row"><div class="col-md-12"><div class="bar_title">限制原因</div></div><div class="col-md-6"><label>限制原因:</label><label class="reason item_value"></label></div><div class="col-md-6"><label>备注信息:</label><label class="comments item_value"></label></div></div>';
         // 预留时隙
-        var reservedTimeSlots =  '<div class="row reserved_time_slots hidden"><div class="col-md-12"><div class="bar_title">预留时隙</div></div><div class="col-md-6"><label>时隙时间:</label><label class="slots item_value"></label></div></div>';
+        var reservedTimeSlots = '<div class="row reserved_time_slots hidden"><div class="col-md-12"><div class="bar_title">预留时隙</div></div><div class="col-md-6"><label>时隙时间:</label><label class="slots item_value"></label></div></div>';
         // 预锁航班时隙变更策略
         var changeStrategy = '<div class="row"><div class="col-md-12"><div class="bar_title">预锁航班时隙变更策略</div></div><div class="col-md-6"><label>变更策略:</label><label class="change_strategy item_value"></label></div><div class="col-md-6"><label>压缩时间范围:</label><label class="time_range item_value"></label></div></div>';
         // 二类放行
@@ -755,9 +760,9 @@ var CommonData = function () {
         // 协调记录
         var records = '<div class="row records"><div class="col-md-12"><div class="bar_title valve-ico hides">协调记录</div></div><div class="col-md-12 record_col hidden"><table class="record_table"><thead><tr><th class="record_type">协调类型</th><th class="record_before">协调前</th><th class="record_last">协调后</th><th class="record_comments">协调备注</th><th class="record_status">协调状态</th><th class="record_time">协调时间</th><th class="record_user">协调用户</th><th class="record_user_ip">协调用户IP</th></tr></thead><tbody><tr class="template hidden"><td class="record_type"></td><td class="record_before"></td><td class="record_last"></td><td class="record_comments"></td><td class="record_status"></td><td class="record_time"></td><td class="record_user"></td><td class="record_user_ip"></td></tr></tbody></table></div></div>';
         //  窗口内容节点拼接
-        var content = '<div class="dhx_wrap container-fluid flow_detail dhx_wrap_' + dialogId+ '">' +
+        var content = '<div class="dhx_wrap container-fluid flow_detail dhx_wrap_' + dialogId + '">' +
             header + basicInformation + limitTime + limitType + limitDirection + compositeLimitDirections +
-            limitHight + limitReason + reservedTimeSlots  + changeStrategy +timeSegment + records +
+            limitHight + limitReason + reservedTimeSlots + changeStrategy + timeSegment + records +
             '</div>';
         //窗口参数
         var winParams = {
@@ -768,7 +773,7 @@ var CommonData = function () {
             move: true
         };
         //初始化dhxwindow弹框
-        var dhxWins = DhxModalDialog.create('流控信息详情',content,winParams);
+        var dhxWins = DhxModalDialog.create('流控信息详情', content, winParams);
         // 获取流控信息详情数据
         getFlowById(opt.id, dialogId);
     }
@@ -777,7 +782,7 @@ var CommonData = function () {
      *  获取流控详情数据
      * */
     var getFlowById = function (id, dialogId) {
-        var url = ipHost+ 'flow_id_detail?userId=' + userId + '&id=' + id;
+        var url = ipHost + 'flow_id_detail?userId=' + userId + '&id=' + id;
         $.ajax({
             url: url,
             type: 'GET',
@@ -790,7 +795,7 @@ var CommonData = function () {
                         // 创建流控详情对象
                         var obj = new FlowDetail({
                             id: id,
-                            dialogId : dialogId
+                            dialogId: dialogId
                         });
                         // 转换流控详情数据
                         obj.convertData(result);
@@ -849,9 +854,9 @@ var CommonData = function () {
 
         } else if (opt.type == 'flight') {
             table = initFlightTable(opt);
-        } else if(opt.type == 'dcb'){
+        } else if (opt.type == 'dcb') {
             table = initDcbTable(opt);
-        } else if(opt.type == 'demand'){
+        } else if (opt.type == 'demand') {
             table = initDemandFlightTable(opt);
         }
         return table;
@@ -920,15 +925,15 @@ var CommonData = function () {
                     table.export(opt.name);
                 },
                 position: "first"
-            }) .navButtonAdd('#' + pagerId, {
-                caption: "高级查询",
-                title: "高级查询",
-                buttonicon: "glyphicon-search",
-                onClickButton: function () {
-                    table.showAdvanceFilter();
-                },
-                position: "first"
-            })
+            }).navButtonAdd('#' + pagerId, {
+            caption: "高级查询",
+            title: "高级查询",
+            buttonicon: "glyphicon-search",
+            onClickButton: function () {
+                table.showAdvanceFilter();
+            },
+            position: "first"
+        })
             .navButtonAdd('#' + pagerId, {
                 caption: "快速过滤",
                 title: "快速过滤",
@@ -944,13 +949,13 @@ var CommonData = function () {
                 position: "first"
             });
         // 显示pager
-        $('#'+ pagerId).show();
+        $('#' + pagerId).show();
         // 调整表格大小以适应所在容器
         table.resizeToFitContainer();
         //数据id集合
         var ids = opt.ids;
         //更新流控表格数据
-        fireFlowTableDataChange(ids,table);
+        fireFlowTableDataChange(ids, table);
 
         return table;
     };
@@ -971,7 +976,7 @@ var CommonData = function () {
             colDisplay: CommonData.flightTableConfig.colDisplay,
             colTitle: CommonData.flightTableConfig.colTitle,
             colStyle: CommonData.flightTableConfig.colStyle,
-            colEdit: {OPEN_FLIGHT_DETAIL : true},
+            colEdit: {OPEN_FLIGHT_DETAIL: true},
             search: false,
             params: {
                 rowNum: 999999,
@@ -990,7 +995,7 @@ var CommonData = function () {
 
                 }
             },
-            generateTime : CommonData.generateTime
+            generateTime: CommonData.generateTime
 
         });
         // 转换航班计划表格数据
@@ -1008,15 +1013,15 @@ var CommonData = function () {
                 table.export(opt.name);
             },
             position: "first"
-        }) .navButtonAdd('#' + pagerId, {
-                caption: "高级查询",
-                title: "高级查询",
-                buttonicon: "glyphicon-search",
-                onClickButton: function () {
-                    table.showAdvanceFilter();
-                },
-                position: "first"
-            })
+        }).navButtonAdd('#' + pagerId, {
+            caption: "高级查询",
+            title: "高级查询",
+            buttonicon: "glyphicon-search",
+            onClickButton: function () {
+                table.showAdvanceFilter();
+            },
+            position: "first"
+        })
             .navButtonAdd('#' + pagerId, {
                 caption: "快速过滤",
                 title: "快速过滤",
@@ -1032,7 +1037,7 @@ var CommonData = function () {
                 position: "first"
             });
         // 显示pager
-        $('#'+ pagerId).show();
+        $('#' + pagerId).show();
         // 调整表格大小以适应所在容器
         table.resizeToFitContainer();
         //数据id集合
@@ -1105,14 +1110,14 @@ var CommonData = function () {
             },
             position: "first"
         }).navButtonAdd('#' + pagerId, {
-                caption: "高级查询",
-                title: "高级查询",
-                buttonicon: "glyphicon-search",
-                onClickButton: function () {
-                    table.showAdvanceFilter();
-                },
-                position: "first"
-            })
+            caption: "高级查询",
+            title: "高级查询",
+            buttonicon: "glyphicon-search",
+            onClickButton: function () {
+                table.showAdvanceFilter();
+            },
+            position: "first"
+        })
             .navButtonAdd('#' + pagerId, {
                 caption: "快速过滤",
                 title: "快速过滤",
@@ -1128,20 +1133,18 @@ var CommonData = function () {
                 position: "first"
             });
         // 显示pager
-        $('#'+ pagerId).show();
+        $('#' + pagerId).show();
         // 调整表格大小以适应所在容器
         table.resizeToFitContainer();
         //数据id集合
         var ids = opt.ids;
         // 获取流控DCB需求值对应的航班信息
-        getDCBDemandFlightData(opt,table);
+        getDCBDemandFlightData(opt, table);
         //更新航班表格数据
         // fireFlightTableDataChange(ids, table);
 
         return table;
     };
-
-
 
 
     /**
@@ -1180,21 +1183,21 @@ var CommonData = function () {
                     var colModel = table.gridTableObject.jqGrid('getGridParam')['colModel'];
                     var colName = colModel[iCol].name;
                     //获取当前行对应的原始数据
-                    var rowData = table.data.result[rowid*1-1]
+                    var rowData = table.data.result[rowid * 1 - 1]
                     // 点击需求值弹出需求航班信息表
                     // 若此单元格对应的colModel的colName是demandValue，则此单元格为需求值
                     if (colName == 'demandValue') {
                         //取得当前行数据的计算时间值
-                        var time =rowData.statisDateTime;
+                        var time = rowData.statisDateTime;
                         //取得流控ID
                         var flowid = table.flowid;
 
                         var opt = {
                             //类型 流控航班
-                            type : 'demand',
-                            name : 'DCB需求值 航班信息',
+                            type: 'demand',
+                            name: 'DCB需求值 航班信息',
                             time: time, // 计算时间
-                            id:flowid // 流控ID
+                            id: flowid // 流控ID
                         };
                         // 弹出需求航班信息表
                         createDhxWindow(opt);
@@ -1216,14 +1219,14 @@ var CommonData = function () {
             },
             position: "first"
         }).navButtonAdd('#' + pagerId, {
-                caption: "高级查询",
-                title: "高级查询",
-                buttonicon: "glyphicon-search",
-                onClickButton: function () {
-                    table.showAdvanceFilter();
-                },
-                position: "first"
-            })
+            caption: "高级查询",
+            title: "高级查询",
+            buttonicon: "glyphicon-search",
+            onClickButton: function () {
+                table.showAdvanceFilter();
+            },
+            position: "first"
+        })
             .navButtonAdd('#' + pagerId, {
                 caption: "快速过滤",
                 title: "快速过滤",
@@ -1239,17 +1242,17 @@ var CommonData = function () {
                 position: "first"
             });
         // 显示pager
-        $('#'+ pagerId).show();
+        $('#' + pagerId).show();
         table.resizeToFitContainer();
         //将流控ID赋值给table，用于点击需求值ajax获取数据请求时流控ID参数使用
-       table.flowid = flowid;
+        table.flowid = flowid;
         //更新航班表格数据
         // fireFlightTableDataChange(ids, table);
-        getDCBData(opt,table);
+        getDCBData(opt, table);
         return table;
     }
 
-    var fireDcbTableDataChange = function (data,table,opt) {
+    var fireDcbTableDataChange = function (data, table, opt) {
         table.tableDataMap = {};
         table.tableData = {};
         table.data = data;
@@ -1267,11 +1270,11 @@ var CommonData = function () {
         table.tableData = tableData;
         table.drawGridTableData();
 
-        var container = $('.dhx_wrap_'+ opt.tableId);
+        var container = $('.dhx_wrap_' + opt.tableId);
         var total = tableData.length;
         var time = formateTime(data.generateTime);
         $('.total_record', container).text(total);
-        $('.generate_time', container).text('数据生成时间:'+time);
+        $('.generate_time', container).text('数据生成时间:' + time);
     };
 
     /**
@@ -1279,10 +1282,10 @@ var CommonData = function () {
      * */
     var convertDcbData = function (data) {
 
-        for (var i in data){
+        for (var i in data) {
             // 若值为数字0，则转换为字符'0',用于解决导出的excel表格单元格为空的问题
-            if(data[i] === 0){
-                data[i] = data[i]+'';
+            if (data[i] === 0) {
+                data[i] = data[i] + '';
             }
         }
         return data;
@@ -1339,7 +1342,7 @@ var CommonData = function () {
     /**
      * 更新流控DCB需求值对应的航班信息数据
      * */
-    var fireDCBDemandFlightTableDataChange = function (data,table,opt) {
+    var fireDCBDemandFlightTableDataChange = function (data, table, opt) {
         table.tableDataMap = {};
         table.tableData = {};
         table.data = data;
@@ -1347,7 +1350,7 @@ var CommonData = function () {
         var tableMap = {};
         var result = data.result;
         for (var index in result) {
-            var d =  FlightGridTableDataUtil.convertData(result[index]);
+            var d = FlightGridTableDataUtil.convertData(result[index]);
             tableData.push(d);
             tableMap[result[index].id] = d;
         }
@@ -1355,11 +1358,11 @@ var CommonData = function () {
         table.tableData = tableData;
         table.drawGridTableData();
 
-        var container = $('.dhx_wrap_'+ opt.tableId);
+        var container = $('.dhx_wrap_' + opt.tableId);
         var total = tableData.length;
         var time = formateTime(data.generateTime);
         $('.total_record', container).text(total);
-        $('.generate_time', container).text('数据生成时间:'+time);
+        $('.generate_time', container).text('数据生成时间:' + time);
     };
 
     /**
@@ -1380,18 +1383,18 @@ var CommonData = function () {
         return obj;
     }
 
-    var getGridTableStyleObj = function( tableName,user_property){
+    var getGridTableStyleObj = function (tableName, user_property) {
         var paramsObj = {
-            colStyle : {},
-            colNames : {},
-            colTitle : {},
+            colStyle: {},
+            colNames: {},
+            colTitle: {},
             colDisplay: {}
         };
         //验证是有效的数据
-        if( user_property.length > 0){
-            for ( var key in user_property) {
+        if (user_property.length > 0) {
+            for (var key in user_property) {
                 var userProperty = user_property[key];
-                if( $.isValidObject(userProperty) ){
+                if ($.isValidObject(userProperty)) {
                     var value = $.parseJSON(userProperty['value']);
                     var uKey = userProperty.key;
                     var styleStr = 'grid_col_style';
@@ -1399,11 +1402,11 @@ var CommonData = function () {
                     var titleStr = 'grid_col_title';
                     var displayNameStr = '';
                     //重定义匹配规则
-                    if( $.isValidVariable(tableName) ) {//是有效字符串时
+                    if ($.isValidVariable(tableName)) {//是有效字符串时
                         displayNameStr = 'grid_' + tableName + '_col_monitor_display';
                     }
                     //匹配赋值
-                    switch( uKey ){
+                    switch (uKey) {
                         case styleStr : {
                             paramsObj.colStyle = value;
                             break;
@@ -1433,34 +1436,35 @@ var CommonData = function () {
     var setFlowcontrolStatusCellClassName = function (data) {
         var className = '';
         var status = data.status;
-        if($.isValidVariable(status)){
-            switch (status){
+        if ($.isValidVariable(status)) {
+            switch (status) {
                 //正在执行
                 case 'RUNNING':
-                    className ='status status_running';
+                    className = 'status status_running';
                     break;
                 // 人工终止
                 case 'TERMINATED':
-                    className ='status status_terminated';
+                    className = 'status status_terminated';
                     break;
                 // 正常结束
                 case 'FINISHED':
-                    className ='status status_finished';
+                    className = 'status status_finished';
                     break;
                 // 已发布
                 case 'PUBLISH':
-                    className ='status status_terminated';
+                    className = 'status status_terminated';
                     break;
                 // 将要执行
                 case 'FUTURE':
-                    className ='status status_future';
+                    className = 'status status_future';
                     break;
                 // 系统终止
                 case 'STOP':
-                    className ='status status_stop';
+                    className = 'status status_stop';
                     break;
             }
-        };
+        }
+        ;
         return className;
     };
 
@@ -1474,7 +1478,7 @@ var CommonData = function () {
         },
         flightTableConfig: flightTableConfig,
         flowTableConfig: flowTableConfig,
-        dcbTableConfig : dcbTableConfig,
+        dcbTableConfig: dcbTableConfig,
         // generateTime : generateTime,
         formateTime: formateTime,
         initTableParams: initTableParams,

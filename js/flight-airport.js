@@ -16,12 +16,9 @@ var Flight = function () {
     var userId = localStorage.getItem("userId");
     //登录唯一值
     // var onlyValue = localStorage.getItem("onlyValue");
-    //用户名
-    var userName = localStorage.getItem("userName");
     //表格配置
     var user_property = localStorage.getItem('userProperty')
     user_property = JSON.parse(user_property)
-    $(".user_name .name").text(userName);
     //定时器开关
     var timerValve = true;
     /**全局保存柱形图对象以及配置参数
